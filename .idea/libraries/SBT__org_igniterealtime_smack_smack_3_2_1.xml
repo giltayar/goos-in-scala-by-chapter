@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="SBT: org.igniterealtime.smack:smack:3.2.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.igniterealtime.smack/smack/jars/smack-3.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.igniterealtime.smack/smack/docs/smack-3.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.igniterealtime.smack/smack/srcs/smack-3.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

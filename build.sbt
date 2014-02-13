@@ -1,4 +1,4 @@
-name := "scala-template"
+name := "goos"
 
 organization := "com.example"
 
@@ -12,5 +12,7 @@ resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repos
 
 libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.0.13",
+  "com.googlecode.windowlicker" % "windowlicker-swing" % "r268",
+  "org.igniterealtime.smack" % "smack" % "3.2.1",
   "org.specs2" %% "specs2" % "2.3.7" % "test"
 )

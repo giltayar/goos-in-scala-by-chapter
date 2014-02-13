@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="SBT: com.googlecode.windowlicker:windowlicker-swing:r268">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.googlecode.windowlicker/windowlicker-swing/jars/windowlicker-swing-r268.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.googlecode.windowlicker/windowlicker-swing/docs/windowlicker-swing-r268-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.googlecode.windowlicker/windowlicker-swing/srcs/windowlicker-swing-r268-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
