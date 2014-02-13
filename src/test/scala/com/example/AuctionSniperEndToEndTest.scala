@@ -1,36 +1,29 @@
 package com.example
 
-import org.specs2.Specification
-import org.specs2.specification.Step
-import org.specs2.matcher.Hamcrest
+import org.specs2.mutable.{After, Specification}
+import org.specs2.specification.Scope
 
-class AuctionSniperEndToEndTest extends Specification with Logging with Hamcrest {
-  val application = new ApplicationRunner()
-  val auction = new FakeAuctionServer("1234")
 
-  def is = s2"""
-  $sequential
-  When an auction is selling an item,
-   And an auction sniper has started to bid in that auction,
-   Then the auction will receive a join request from sniper $e1
-  And when the auction announces that it is closed,
-   Then the application will show that the sniper has lost auction $e2
-  ${Step(auction.stop())}
-  ${Step(application.stop())}
-  """
-  def e1 = {
-    log.info("e1 start")
-    auction.startSellingItem()
-    application.startBiddingIn(auction)
-    val res = auction.hasReceivedJoinRequestFromSniper must beTrue
-    log.info("e1 done")
-    res
+class AuctionSniperEndToEndTest extends Specification {
+
+  trait RunnerAndAuctionServer extends Scope with After {
+    val application = new ApplicationRunner()
+    val auction = new FakeAuctionServer("1234")
+
+    def after = {
+      auction.stop()
+      application.stop()
+    }
   }
-  def e2 = {
-    log.info("e2 start")
-    auction.announceClosed()
-    application.showsSniperHasLostAuction()
-    log.info("e2 end")
-    success
+  
+  "The auction sniper" should {
+    "receive join request from sniper and show sniper has lost auction" in new RunnerAndAuctionServer {
+      auction.startSellingItem()
+      application.startBiddingIn(auction)
+      auction.hasReceivedJoinRequestFromSniper must beTrue
+      auction.announceClosed()
+      application.showsSniperHasLostAuction()
+    }
   }
 }
+

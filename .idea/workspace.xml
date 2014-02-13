@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f593564d-dbe8-472e-8ba9-a3940d593ec0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/scala/com/example/ApplicationRunner.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/scala/com/example/AuctionSniperEndToEndTest.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/scala/com/example/FakeAuctionServer.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/SBT__com_googlecode_windowlicker_windowlicker_core_r268.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/SBT__com_googlecode_windowlicker_windowlicker_swing_r268.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/SBT__org_hamcrest_hamcrest_all_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/SBT__org_igniterealtime_smack_smack_3_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/scala/com/example/package.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/scala/com/example/MainSpec.scala" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.sbt" afterPath="$PROJECT_DIR$/build.sbt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/com/example/AuctionSniperEndToEndTest.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/example/AuctionSniperEndToEndTest.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="goos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,19 +68,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AuctionSniperEndToEndTest.scala" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="AuctionSniperEndToEndTest.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/AuctionSniperEndToEndTest.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="0" selection-start="1043" selection-end="1043" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
-              <folding />
+            <state line="17" column="2" selection-start="396" selection-end="396" vertical-scroll-proportion="0.375" vertical-offset="0" max-vertical-offset="680">
+              <folding>
+                <element signature="e#21#69#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.scala" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Main.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/Main.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="22" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.5514706" vertical-offset="105" max-vertical-offset="1305">
+            <state line="26" column="80" selection-start="822" selection-end="822" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="1305">
               <folding>
                 <element signature="e#21#72#0" expanded="true" />
               </folding>
@@ -107,50 +99,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/package.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="6" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-              <folding>
-                <element signature="e#13#87#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PacketReader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.ivy2/cache/org.igniterealtime.smack/smack/srcs/smack-3.2.1-sources.jar!/org/jivesoftware/smack/PacketReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="259" column="0" selection-start="10127" selection-end="10127" vertical-scroll-proportion="0.0" vertical-offset="3149" max-vertical-offset="6405">
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#2202#2308#0" expanded="false" />
-                <element signature="e#2297#2298#0" expanded="false" />
-                <element signature="e#2641#2965#0" expanded="false" />
-                <element signature="e#2954#2955#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ApplicationRunner.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/ApplicationRunner.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="41" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0" vertical-offset="10" max-vertical-offset="825">
+            <state line="27" column="29" selection-start="817" selection-end="839" vertical-scroll-proportion="0.0" vertical-offset="145" max-vertical-offset="825">
               <folding>
                 <element signature="e#21#102#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JLabelDriver.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.ivy2/cache/com.googlecode.windowlicker/windowlicker-swing/srcs/windowlicker-swing-r268-sources.jar!/com/objogate/wl/swing/driver/JLabelDriver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="16" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
-              <folding>
-                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -175,10 +129,10 @@
         <option value="$PROJECT_DIR$/main/test/AuctionSniperEndToEndTest.scala" />
         <option value="$PROJECT_DIR$/build.sbt" />
         <option value="$PROJECT_DIR$/src/main/scala/com/example/package.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/com/example/AuctionSniperEndToEndTest.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/example/FakeAuctionServer.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/example/ApplicationRunner.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/example/Main.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/example/ApplicationRunner.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/com/example/AuctionSniperEndToEndTest.scala" />
       </list>
     </option>
   </component>
@@ -694,9 +648,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1174" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -711,7 +665,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17643923" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.6629393" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32954547" sideWeight="0.6629393" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -786,7 +740,9 @@
     <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/AuctionSniperEndToEndTest.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="0" selection-start="908" selection-end="908" vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="570">
-          <folding />
+          <folding>
+            <element signature="e#21#69#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -811,7 +767,9 @@
     <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/AuctionSniperEndToEndTest.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="31" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="525">
-          <folding />
+          <folding>
+            <element signature="e#21#69#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -880,7 +838,9 @@
     </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.specs2/specs2_2.10/jars/specs2_2.10-2.3.7.jar!/org/specs2/specification/After.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="6" selection-start="39" selection-end="39" vertical-scroll-proportion="0.025817556" vertical-offset="0" max-vertical-offset="581" />
+        <state line="1" column="6" selection-start="39" selection-end="39" vertical-scroll-proportion="0.025817556" vertical-offset="0" max-vertical-offset="581">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/JavaLogging.java">
@@ -903,11 +863,6 @@
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.10.3-sources.jar!/scala/App.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="68" column="6" selection-start="2732" selection-end="2732" vertical-scroll-proportion="0.0" vertical-offset="460" max-vertical-offset="1140" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.10.3-sources.jar!/scala/collection/LinearSeqOptimized.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="6" selection-start="885" selection-end="885" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4500" />
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/com.googlecode.windowlicker/windowlicker-swing/srcs/windowlicker-swing-r268-sources.jar!/com/objogate/wl/swing/driver/JLabelDriver.java">
@@ -942,18 +897,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/AuctionSniperEndToEndTest.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/Main.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="0" selection-start="1043" selection-end="1043" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/ApplicationRunner.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="41" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0" vertical-offset="10" max-vertical-offset="825">
+        <state line="26" column="80" selection-start="822" selection-end="822" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="1305">
           <folding>
-            <element signature="e#21#102#0" expanded="true" />
+            <element signature="e#21#72#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -965,11 +913,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/Main.scala">
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.10.3-sources.jar!/scala/collection/LinearSeqOptimized.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="22" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.5514706" vertical-offset="105" max-vertical-offset="1305">
+        <state line="21" column="6" selection-start="885" selection-end="885" vertical-scroll-proportion="0.24264705" vertical-offset="0" max-vertical-offset="4500">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/ApplicationRunner.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="29" selection-start="817" selection-end="839" vertical-scroll-proportion="0.0" vertical-offset="145" max-vertical-offset="825">
           <folding>
-            <element signature="e#21#72#0" expanded="true" />
+            <element signature="e#21#102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/AuctionSniperEndToEndTest.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="2" selection-start="396" selection-end="396" vertical-scroll-proportion="0.375" vertical-offset="0" max-vertical-offset="680">
+          <folding>
+            <element signature="e#21#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
