@@ -1,9 +1,10 @@
-package com.example
+package com.example.tests.endtoend
 
 import com.objogate.wl.swing.driver.{ComponentDriver, JLabelDriver, JFrameDriver}
 import com.objogate.wl.swing.gesture.GesturePerformer
 import com.objogate.wl.swing.AWTEventQueueProber
 import org.hamcrest.Matchers.equalTo
+import com.example._
 
 class ApplicationRunner extends Logging {
 
@@ -18,7 +19,7 @@ class ApplicationRunner extends Logging {
     thread setDaemon true
     thread.start()
 
-    driver = new AuctionSniperDriver(1000)
+    driver = new AuctionSniperDriver(5000)
     driver.showsSniperStatus(MainWindow.STATUS_JOINING)
     log.info("startBiddingIn ended")
   }
@@ -30,9 +31,9 @@ class ApplicationRunner extends Logging {
   }
 
   def hasShownSniperIsBidding() {
-    log.info(s"waiting for status lost $driver")
+    log.info(s"waiting for status bidding $driver")
     driver.showsSniperStatus(MainWindow.STATUS_BIDDING)
-    log.info("got status lost")
+    log.info("got status bidding")
   }
 
   def stop() {

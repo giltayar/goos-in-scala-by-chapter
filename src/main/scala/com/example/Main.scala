@@ -9,14 +9,13 @@ import java.awt.event.{WindowEvent, WindowAdapter}
 object Main extends App with Logging {
   val Array(auctionItem) = this.args
   var ui: MainWindow = null
-  var chatReferenceSoItIsNotGCed : Chat = null
 
   log.info("Main.main start")
   createAndWaitForMainWindow()
-  startBidding()
+  joinAuction()
   log.info("Main.main end")
 
-  def startBidding() {
+  def joinAuction() {
     log.info(s"start bidding $auctionItem")
     val connection = new XMPPConnection(CONNECTION_HOST)
     connection.connect()
@@ -25,28 +24,18 @@ object Main extends App with Logging {
 
     disconnectWhenUiClose(connection)
     connection.login(itemUserName, PASSWORD)
-    log.info(s"creating chat ${itemUserName}@${connection.getServiceName}/${RESOURCE}")
+    log.info(s"creating chat $itemUserName@${connection.getServiceName}/$RESOURCE")
+
     val chat = connection.getChatManager.createChat(
-      s"${itemUserName}@${connection.getServiceName}/${RESOURCE}",
-      AuctionMessageTranslator(new AuctionEventListener {
-        def auctionClosed() = {
-          SwingUtilities.invokeLater(createRunnable({
-            ui.showStatus(MainWindow.STATUS_LOST)
-          }))
-       }
+      s"$itemUserName@${connection.getServiceName}/$RESOURCE",
+      null)
 
-        def currentPrice(price: Int, increment: Int) = {
+    val auction = new XMPPAuction(chat)
+    val auctionSniper = new AuctionSniper(auction, new SniperStatusDisplayer(ui))
+    chat.addMessageListener(new AuctionMessageTranslator(auctionSniper))
 
-        }
-      })
-    )
-    chat.sendMessage(getJoinXmppCommand)
+    auction.join()
     log.info(s"created chat ${chat.getParticipant}")
-    chatReferenceSoItIsNotGCed = chat
-  }
-
-  def getJoinXmppCommand = {
-    "SOLVersion: 1.1; Event: CLOSE"
   }
 
   private def createAndWaitForMainWindow() {
@@ -66,6 +55,30 @@ object Main extends App with Logging {
       }
     })
   }
+}
+
+class SniperStatusDisplayer(private val ui: MainWindow) extends SniperListener {
+  def sniperLost() = {
+    setStatus(MainWindow.STATUS_LOST)
+  }
+
+  def sniperBidding() = {
+    setStatus(MainWindow.STATUS_BIDDING)
+  }
+
+  private def setStatus(statusText: String) = SwingUtilities.invokeLater(createRunnable {
+    ui.showStatus(statusText)
+  })
+}
+
+class XMPPAuction(private val chat: Chat) extends Auction {
+  def join() = {
+    chat.sendMessage("SOLVersion: 1.1; Event: JOIN;")
+  }
+  def bid(newPrice: Int) = {
+    chat.sendMessage(s"SOLVersion: 1.1; Event: BID; Price: $newPrice;")
+  }
+
 }
 
 class MainWindow extends JFrame("AuctionSniper") {

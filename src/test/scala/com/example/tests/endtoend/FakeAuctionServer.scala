@@ -1,10 +1,13 @@
-package com.example
+package com.example.tests.endtoend
 
 import org.jivesoftware.smack.{Chat, XMPPConnection}
 import org.jivesoftware.smack.packet.Message
 import java.util.concurrent.{TimeUnit, ArrayBlockingQueue}
-import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.MatcherAssert._
 import org.hamcrest.Matchers.equalTo
+import org.hamcrest.Matchers.notNullValue
+import org.hamcrest.Matchers.is
+import com.example._
 
 class FakeAuctionServer(val item: String) extends Logging {
 
@@ -19,7 +22,6 @@ class FakeAuctionServer(val item: String) extends Logging {
     connection.connect()
     connection.login(auctionItemUserName(item), PASSWORD, RESOURCE)
     connection.getChatManager.addChatListener(createChatListener { (chat, b) =>
-      log.info("got a bid")
       currentChat = chat
       currentChat.addMessageListener(createMessageListener { (chat, message) =>
         messages.add(message)
@@ -29,7 +31,8 @@ class FakeAuctionServer(val item: String) extends Logging {
   }
 
   def reportPrice(price: Int, increment: Int, bidder: String) = {
-    currentChat.sendMessage(s"SOLVersion: 1.1; Event: PRICE; CurrentPrice: $price; Bidder: $bidder")
+    currentChat.sendMessage(s"SOLVersion: 1.1; Event: PRICE; CurrentPrice: $price; Increment: $increment; " +
+      s"Bidder: $bidder")
   }
 
   def stop() {
@@ -40,13 +43,14 @@ class FakeAuctionServer(val item: String) extends Logging {
   def hasReceivedJoinRequestFromSniper() = {
     val message = messages.poll(5, TimeUnit.SECONDS)
 
-    assertThat(message.getBody, equalTo(Main.getJoinXmppCommand))
+    assertThat(message.getBody, equalTo("SOLVersion: 1.1; Event: JOIN;"))
   }
 
   def hasReceivedBid(bid: Int) = {
     val message = messages.poll(5, TimeUnit.SECONDS)
 
-    assertThat(message.getBody, equalTo("asdfsadfasdf".format(bid)))
+    assertThat(message, is(notNullValue[Message]()))
+    assertThat(message.getBody, equalTo(s"SOLVersion: 1.1; Event: BID; Price: $bid;"))
   }
 
   def announceClosed() {

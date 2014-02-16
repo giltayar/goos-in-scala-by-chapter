@@ -2,10 +2,11 @@ package com.example.tests
 
 import org.specs2.mutable.{After, Specification}
 import org.specs2.specification.Scope
-import com.example.{FakeAuctionServer, ApplicationRunner}
+import com.example.tests.endtoend.{FakeAuctionServer, ApplicationRunner}
+import com.example.Logging
 
 
-class AuctionSniperEndToEndTest extends Specification {
+class AuctionSniperEndToEndTest extends Specification with Logging {
 
   trait RunnerAndAuctionServer extends Scope with After {
     val application = new ApplicationRunner()
@@ -41,6 +42,7 @@ class AuctionSniperEndToEndTest extends Specification {
 
       auction.hasReceivedBid(1098)
 
+      log.info("Announcing closed")
       auction.announceClosed()
       application.showsSniperHasLostAuction()
     }

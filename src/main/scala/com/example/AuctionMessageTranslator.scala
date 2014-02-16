@@ -3,10 +3,12 @@ package com.example
 import org.jivesoftware.smack.{Chat, MessageListener}
 import org.jivesoftware.smack.packet.Message
 
-case class AuctionMessageTranslator(private val listener: AuctionEventListener) extends MessageListener {
+class AuctionMessageTranslator(private val listener: AuctionEventListener) extends MessageListener with Logging {
 
   def processMessage(chat: Chat, message: Message) = {
     val fields = packEventFrom(message.getBody)
+
+    log.info(s"Processing message ${fields}} (${message.getBody})")
 
     fields("Event") match {
       case "CLOSE" => listener.auctionClosed
