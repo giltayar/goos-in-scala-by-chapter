@@ -1,7 +1,8 @@
-package com.example
+package com.example.tests
 
 import org.specs2.mutable.{After, Specification}
 import org.specs2.specification.Scope
+import com.example.{FakeAuctionServer, ApplicationRunner}
 
 
 class AuctionSniperEndToEndTest extends Specification {
@@ -14,13 +15,32 @@ class AuctionSniperEndToEndTest extends Specification {
       auction.stop()
       application.stop()
     }
-  }
-  
-  "The auction sniper" should {
-    "receive join request from sniper and show sniper has lost auction" in new RunnerAndAuctionServer {
+
+    def joinAuction = {
       auction.startSellingItem()
       application.startBiddingIn(auction)
-      auction.hasReceivedJoinRequestFromSniper must beTrue
+      auction.hasReceivedJoinRequestFromSniper
+    }
+  }
+
+  "The auction sniper" should {
+    sequential
+
+    "receive join request from sniper and show sniper has lost auction" in new RunnerAndAuctionServer {
+      joinAuction
+
+      auction.announceClosed()
+      application.showsSniperHasLostAuction()
+    }
+
+    "join, bid, and lose" in new RunnerAndAuctionServer {
+      joinAuction
+
+      auction.reportPrice(1000, 98, "other bidder")
+      application.hasShownSniperIsBidding
+
+      auction.hasReceivedBid(1098)
+
       auction.announceClosed()
       application.showsSniperHasLostAuction()
     }

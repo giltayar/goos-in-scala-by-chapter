@@ -1,9 +1,10 @@
 package com.example
 
-import org.jivesoftware.smack.{MessageListener, Chat, XMPPConnection}
+import org.jivesoftware.smack.{Chat, XMPPConnection}
 import org.jivesoftware.smack.packet.Message
-import scala.collection.mutable.ArrayBuffer
 import java.util.concurrent.{TimeUnit, ArrayBlockingQueue}
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.equalTo
 
 class FakeAuctionServer(val item: String) extends Logging {
 
@@ -27,21 +28,29 @@ class FakeAuctionServer(val item: String) extends Logging {
     log.info("Added chat listener")
   }
 
+  def reportPrice(price: Int, increment: Int, bidder: String) = {
+    currentChat.sendMessage(s"SOLVersion: 1.1; Event: PRICE; CurrentPrice: $price; Bidder: $bidder")
+  }
+
   def stop() {
     connection.disconnect()
     log.info("stopped connection")
   }
 
   def hasReceivedJoinRequestFromSniper() = {
-    log.info("polling for 10 seconds to wait for a message")
-    val res = messages.poll(10, TimeUnit.SECONDS) != null
-    log.info("finished polling")
+    val message = messages.poll(5, TimeUnit.SECONDS)
 
-    res
+    assertThat(message.getBody, equalTo(Main.getJoinXmppCommand))
+  }
+
+  def hasReceivedBid(bid: Int) = {
+    val message = messages.poll(5, TimeUnit.SECONDS)
+
+    assertThat(message.getBody, equalTo("asdfsadfasdf".format(bid)))
   }
 
   def announceClosed() {
     if (currentChat != null)
-      currentChat.sendMessage(new Message())
+      currentChat.sendMessage("SOLVersion: 1.1; Event: CLOSE;")
   }
 }

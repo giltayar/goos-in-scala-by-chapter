@@ -4,7 +4,7 @@ import javax.swing.{JLabel, JFrame, SwingUtilities}
 import javax.swing.border.LineBorder
 import java.awt.Color
 import org.jivesoftware.smack.{Chat, XMPPConnection}
-import org.jivesoftware.smack.packet.Message
+import java.awt.event.{WindowEvent, WindowAdapter}
 
 object Main extends App with Logging {
   val Array(auctionItem) = this.args
@@ -23,24 +23,33 @@ object Main extends App with Logging {
 
     val itemUserName = auctionItemUserName(auctionItem)
 
+    disconnectWhenUiClose(connection)
     connection.login(itemUserName, PASSWORD)
     log.info(s"creating chat ${itemUserName}@${connection.getServiceName}/${RESOURCE}")
     val chat = connection.getChatManager.createChat(
       s"${itemUserName}@${connection.getServiceName}/${RESOURCE}",
-      createMessageListener {(chat, message) =>
-        SwingUtilities.invokeLater(createRunnable({
-          log.info(s"message received ($message)")
-          ui.showStatus(MainWindow.STATUS_LOST)
-          log.info("status updated")
-        }))
-      })
+      AuctionMessageTranslator(new AuctionEventListener {
+        def auctionClosed() = {
+          SwingUtilities.invokeLater(createRunnable({
+            ui.showStatus(MainWindow.STATUS_LOST)
+          }))
+       }
 
-    chat.sendMessage(new Message())
-    log.info("created chat")
+        def currentPrice(price: Int, increment: Int) = {
+
+        }
+      })
+    )
+    chat.sendMessage(getJoinXmppCommand)
+    log.info(s"created chat ${chat.getParticipant}")
     chatReferenceSoItIsNotGCed = chat
   }
 
-  def createAndWaitForMainWindow() {
+  def getJoinXmppCommand = {
+    "SOLVersion: 1.1; Event: CLOSE"
+  }
+
+  private def createAndWaitForMainWindow() {
     log.info("Creating and waiting for main window")
     SwingUtilities.invokeAndWait(createRunnable {
       log.info("creating main window")
@@ -48,6 +57,14 @@ object Main extends App with Logging {
       log.info("created main window")
     })
     log.info("The wait for the main window is over")
+  }
+
+  private def disconnectWhenUiClose(connection: XMPPConnection) = {
+    ui.addWindowListener(new WindowAdapter() {
+      override def windowClosed(e: WindowEvent) {
+        connection.disconnect()
+      }
+    })
   }
 }
 
@@ -75,7 +92,9 @@ class MainWindow extends JFrame("AuctionSniper") {
 object MainWindow {
   val WINDOW_NAME = "Auction Sniper"
   val SNIPER_STATUS_NAME = "sniper status"
+
   val STATUS_LOST = "Lost"
   val STATUS_JOINING = "Joining"
+  var STATUS_BIDDING = "Bidding"
 }
 

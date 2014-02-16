@@ -29,6 +29,12 @@ class ApplicationRunner extends Logging {
     log.info("got status lost")
   }
 
+  def hasShownSniperIsBidding() {
+    log.info(s"waiting for status lost $driver")
+    driver.showsSniperStatus(MainWindow.STATUS_BIDDING)
+    log.info("got status lost")
+  }
+
   def stop() {
     if (driver != null)
       driver.dispose()
