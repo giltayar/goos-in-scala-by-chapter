@@ -49,7 +49,7 @@ class FakeAuctionServer(val item: String) extends Logging {
   def hasReceivedBid(bid: Int) = {
     val message = messages.poll(5, TimeUnit.SECONDS)
 
-    assertThat(message, is(notNullValue[Message]()))
+    assertThat(message, is(notNullValue()))
     assertThat(message.getBody, equalTo(s"SOLVersion: 1.1; Event: BID; Price: $bid;"))
   }
 

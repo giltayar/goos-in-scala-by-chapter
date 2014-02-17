@@ -1,34 +1,37 @@
 package com.example
 
-class AuctionSniper(private val auction: Auction, private val sniperListener: SniperListener)
+class AuctionSniper(private val itemId: String,
+                    private val auction: Auction,
+                    private val sniperListener: SniperListener)
     extends AuctionEventListener {
-  var isWinning = false
+  var snapshot = SniperSnapshot.joining(itemId)
 
-  def auctionClosed() = {
-    if (isWinning)
-      sniperListener.sniperWon()
-    else
-      sniperListener.sniperLost()
+  def auctionClosed() = changeSnapshotTo(snapshot.closed())
+
+  def currentPrice(price: Int, increment: Int, priceSource: PriceSource.Value) = priceSource match {
+    case PriceSource.FromOtherBidder =>
+      auction.bid(price + increment)
+      changeSnapshotTo(snapshot.bidding(price, price + increment))
+    case PriceSource.FromSniper =>
+      changeSnapshotTo(snapshot.winning(price))
+    case _ => throw new Exception(s"Bad priceSource $priceSource")
   }
 
-  def currentPrice(price: Int, increment: Int, priceSource: PriceSource.Value) = {
-    isWinning = priceSource == PriceSource.FromSniper
-
-    priceSource match {
-      case PriceSource.FromOtherBidder =>
-        auction.bid(price + increment)
-        sniperListener.sniperBidding()
-      case PriceSource.FromSniper =>
-        sniperListener.sniperWinning()
-      case _ => throw new Exception(s"Bad priceSource $priceSource")
-    }
+  private def changeSnapshotTo(snapshot: SniperSnapshot) {
+    this.snapshot = snapshot
+    sniperListener.sniperStateChanged(snapshot)
   }
 }
 
 trait SniperListener {
-  def sniperBidding()
-  def sniperWinning()
+  def sniperStateChanged(sniperState: SniperSnapshot)
+}
 
-  def sniperLost()
-  def sniperWon()
+object SniperState extends Enumeration {
+  type SniperState = Value
+  val Joining = Value
+  val Bidding = Value
+  val Winning = Value
+  val Lost = Value
+  val Won = Value
 }

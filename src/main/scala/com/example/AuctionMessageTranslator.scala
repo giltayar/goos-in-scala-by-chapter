@@ -30,7 +30,7 @@ class AuctionMessageTranslator(private val sniperId: String,
         fields("CurrentPrice").toInt,
         fields("Increment").toInt,
         if (fields("Bidder") == sniperId) PriceSource.FromSniper else PriceSource.FromOtherBidder)
-      case _ => throw new Exception("Invalid Event Message ${message.getBody}: Event unknown")
+      case _ => ()
 
     }
   }

@@ -1,51 +1,48 @@
 package com.example
 
-import javax.swing.{JLabel, JFrame, SwingUtilities}
-import javax.swing.border.LineBorder
-import java.awt.Color
+import javax.swing._
+import java.awt.BorderLayout
 import org.jivesoftware.smack.{Chat, XMPPConnection}
 import java.awt.event.{WindowEvent, WindowAdapter}
+import javax.swing.table.AbstractTableModel
 
 object Main extends App with Logging {
-  val Array(auctionItem, sniperId) = this.args
-  var ui: MainWindow = null
+  private val Array(auctionItem, sniperId) = this.args
+  private val snipersModel = new SnipersTableModel()
+  private var ui: MainWindow = null
+  private val connection = createConnection()
 
-  log.info("Main.main start")
   createAndWaitForMainWindow()
-  joinAuction()
-  log.info("Main.main end")
+  joinAuction(connection)
+  disconnectWhenUiClose(connection)
 
-  def joinAuction() {
-    log.info(s"start bidding $auctionItem")
+  private def createAndWaitForMainWindow() {
+    SwingUtilities.invokeAndWait(createRunnable {
+      ui = new MainWindow(snipersModel)
+    })
+  }
+
+  private def createConnection() = {
     val connection = new XMPPConnection(CONNECTION_HOST)
     connection.connect()
 
-    val itemUserName = auctionItemUserName(auctionItem)
+    connection.login(auctionItemUserName(auctionItem), PASSWORD)
 
-    disconnectWhenUiClose(connection)
-    connection.login(itemUserName, PASSWORD)
-    log.info(s"creating chat $itemUserName@${connection.getServiceName}/$RESOURCE")
+    connection
+  }
+
+  private def joinAuction(connection: XMPPConnection) {
 
     val chat = connection.getChatManager.createChat(
-      s"$itemUserName@${connection.getServiceName}/$RESOURCE",
+      s"${auctionItemUserName(auctionItem)}@${connection.getServiceName}/$RESOURCE",
       null)
 
     val auction = new XMPPAuction(chat)
-    val auctionSniper = new AuctionSniper(auction, new SniperStatusDisplayer(ui))
+    val auctionSniper = new AuctionSniper(auctionItem, auction, new SwingThreadSniperListener(snipersModel))
+
     chat.addMessageListener(new AuctionMessageTranslator(sniperId, auctionSniper))
 
     auction.join()
-    log.info(s"created chat ${chat.getParticipant}")
-  }
-
-  private def createAndWaitForMainWindow() {
-    log.info("Creating and waiting for main window")
-    SwingUtilities.invokeAndWait(createRunnable {
-      log.info("creating main window")
-      ui = new MainWindow
-      log.info("created main window")
-    })
-    log.info("The wait for the main window is over")
   }
 
   private def disconnectWhenUiClose(connection: XMPPConnection) = {
@@ -57,62 +54,53 @@ object Main extends App with Logging {
   }
 }
 
-class SniperStatusDisplayer(private val ui: MainWindow) extends SniperListener {
-  def sniperLost() = {
-    setStatus(MainWindow.STATUS_LOST)
+private class SwingThreadSniperListener(private val listener: SniperListener) extends SniperListener {
+  def sniperStateChanged(sniperSnapshot: SniperSnapshot) = {
+    SwingUtilities.invokeLater(createRunnable {
+      listener.sniperStateChanged(sniperSnapshot)
+    })
   }
-
-  def sniperWon() = {
-    setStatus(MainWindow.STATUS_WON)
-  }
-
-  def sniperBidding() = {
-    setStatus(MainWindow.STATUS_BIDDING)
-  }
-
-  def sniperWinning() = {
-    setStatus(MainWindow.STATUS_WINNING)
-  }
-
-  private def setStatus(statusText: String) = SwingUtilities.invokeLater(createRunnable {
-    ui.showStatus(statusText)
-  })
 }
 
-class XMPPAuction(private val chat: Chat) extends Auction {
+private class XMPPAuction(private val chat: Chat) extends Auction {
   def join() = {
     chat.sendMessage("SOLVersion: 1.1; Event: JOIN;")
   }
   def bid(newPrice: Int) = {
     chat.sendMessage(s"SOLVersion: 1.1; Event: BID; Price: $newPrice;")
   }
-
 }
 
-class MainWindow extends JFrame("AuctionSniper") {
-  var statusLabel : JLabel = null
-
+private class MainWindow(snipersTableModel: SnipersTableModel) extends JFrame(MainWindow.WINDOW_NAME) {
   this setName MainWindow.WINDOW_NAME
   this setDefaultCloseOperation JFrame.EXIT_ON_CLOSE
 
-  add({
-    statusLabel = new JLabel()
-    statusLabel setName MainWindow.SNIPER_STATUS_NAME
-    statusLabel setBorder new LineBorder(Color.BLACK)
-    statusLabel
-  })
-  showStatus(MainWindow.STATUS_JOINING)
+  fillContentPane(makeSnipersTable())
   pack()
+
+  snipersTableModel.sniperStateChanged(SniperSnapshot("", 0, 0, SniperState.Joining))
   setVisible(true)
 
-  def showStatus(text: String) {
-    statusLabel.setText(text)
+  def makeSnipersTable() = {
+    val snipersTable = new JTable(snipersTableModel)
+
+    snipersTable.setName(MainWindow.SNIPERS_TABLE_NAME)
+
+    snipersTable
+  }
+
+  def fillContentPane(table: JTable) = {
+    val contentPane = getContentPane
+
+    contentPane.setLayout(new BorderLayout())
+
+    contentPane.add(new JScrollPane(table), BorderLayout.CENTER)
   }
 }
 
 object MainWindow {
   val WINDOW_NAME = "Auction Sniper"
-  val SNIPER_STATUS_NAME = "sniper status"
+  val SNIPERS_TABLE_NAME = "SnipersTable"
 
   val STATUS_JOINING = "Joining"
   var STATUS_BIDDING = "Bidding"
@@ -121,3 +109,49 @@ object MainWindow {
   val STATUS_WON = "Won"
 }
 
+private class SnipersTableModel extends AbstractTableModel with SniperListener {
+  var sniperState : SniperSnapshot = null
+
+  def getColumnCount = SnipersTableModel.Column.values.size
+  def getRowCount = 1
+
+  def getValueAt(rowIndex: Int, columnIndex: Int) = {
+    SnipersTableModel.Column(columnIndex) match {
+      case SnipersTableModel.Column.ItemIdentifier => sniperState.itemId
+      case SnipersTableModel.Column.LastPrice => sniperState.lastPrice.toString
+      case SnipersTableModel.Column.LastBid => sniperState.lastBid.toString
+      case SnipersTableModel.Column.SniperStatus => SnipersTableModel.SniperStateToText(sniperState.sniperState)
+    }
+  }
+
+  override def getColumnName(column: Int) = SnipersTableModel.ColumnTitles(SnipersTableModel.Column(column))
+
+  def sniperStateChanged(sniperState: SniperSnapshot) = {
+    this.sniperState = sniperState
+    fireTableRowsUpdated(0, 0)
+  }
+}
+
+private object SnipersTableModel {
+  object Column extends Enumeration {
+    val ItemIdentifier = Value
+    val LastPrice = Value
+    val LastBid = Value
+    val SniperStatus = Value
+  }
+
+  val ColumnTitles = Map(
+    Column.ItemIdentifier -> "Item",
+    Column.LastPrice -> "Last Price",
+    Column.LastBid -> "Last Bid",
+    Column.SniperStatus -> "State"
+  )
+
+  val SniperStateToText = Map(
+    SniperState.Bidding -> "Bidding",
+    SniperState.Joining -> "Joining",
+    SniperState.Winning -> "Winning",
+    SniperState.Lost -> "Lost",
+    SniperState.Won -> "Won"
+  )
+}

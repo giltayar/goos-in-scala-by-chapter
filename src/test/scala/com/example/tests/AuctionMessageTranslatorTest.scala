@@ -44,5 +44,12 @@ class AuctionMessageTranslatorTest extends Specification with Mockito {
 
       there was one(mockAuctionEventListener).currentPrice(192, 7, PriceSource.FromSniper)
     }
+    "not throw exception if message is not a new price or a close" in new Context {
+      val message = new Message()
+
+      message.setBody(s"SOLVersion: 1.1; Event: WHATEVER; CurrentPrice: 192; Increment: 7; Bidder: ${SNIPER_ID};")
+
+      translator.processMessage(null, message)
+    }
   }
 }
