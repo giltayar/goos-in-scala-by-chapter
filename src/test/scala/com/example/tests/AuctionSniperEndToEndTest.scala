@@ -17,10 +17,10 @@ class AuctionSniperEndToEndTest extends Specification with Logging {
       application.stop()
     }
 
-    def joinAuction = {
+    def joinAuction() = {
       auction.startSellingItem()
       application.startBiddingIn(auction)
-      auction.hasReceivedJoinRequestFromSniper
+      auction.hasReceivedJoinRequestFromSniper()
     }
   }
 
@@ -28,23 +28,37 @@ class AuctionSniperEndToEndTest extends Specification with Logging {
     sequential
 
     "receive join request from sniper and show sniper has lost auction" in new RunnerAndAuctionServer {
-      joinAuction
+      joinAuction()
 
       auction.announceClosed()
       application.showsSniperHasLostAuction()
     }
 
     "join, bid, and lose" in new RunnerAndAuctionServer {
-      joinAuction
+      joinAuction()
 
       auction.reportPrice(1000, 98, "other bidder")
-      application.hasShownSniperIsBidding
+      application.hasShownSniperIsBidding()
 
       auction.hasReceivedBid(1098)
 
-      log.info("Announcing closed")
       auction.announceClosed()
       application.showsSniperHasLostAuction()
+    }
+
+    "join, bid, and win" in new RunnerAndAuctionServer {
+      joinAuction()
+
+      auction.reportPrice(1000, 98, "other bidder")
+      application.hasShownSniperIsBidding()
+
+      auction.hasReceivedBid(1098)
+
+      auction.reportPrice(1098, 97, ApplicationRunner.SNIPER_ID)
+      application.hasShownSniperIsWinning()
+
+      auction.announceClosed()
+      application.showsSniperHasWonAuction
     }
   }
 }

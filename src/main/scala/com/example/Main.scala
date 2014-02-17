@@ -7,7 +7,7 @@ import org.jivesoftware.smack.{Chat, XMPPConnection}
 import java.awt.event.{WindowEvent, WindowAdapter}
 
 object Main extends App with Logging {
-  val Array(auctionItem) = this.args
+  val Array(auctionItem, sniperId) = this.args
   var ui: MainWindow = null
 
   log.info("Main.main start")
@@ -32,7 +32,7 @@ object Main extends App with Logging {
 
     val auction = new XMPPAuction(chat)
     val auctionSniper = new AuctionSniper(auction, new SniperStatusDisplayer(ui))
-    chat.addMessageListener(new AuctionMessageTranslator(auctionSniper))
+    chat.addMessageListener(new AuctionMessageTranslator(sniperId, auctionSniper))
 
     auction.join()
     log.info(s"created chat ${chat.getParticipant}")
@@ -62,8 +62,16 @@ class SniperStatusDisplayer(private val ui: MainWindow) extends SniperListener {
     setStatus(MainWindow.STATUS_LOST)
   }
 
+  def sniperWon() = {
+    setStatus(MainWindow.STATUS_WON)
+  }
+
   def sniperBidding() = {
     setStatus(MainWindow.STATUS_BIDDING)
+  }
+
+  def sniperWinning() = {
+    setStatus(MainWindow.STATUS_WINNING)
   }
 
   private def setStatus(statusText: String) = SwingUtilities.invokeLater(createRunnable {
@@ -106,8 +114,10 @@ object MainWindow {
   val WINDOW_NAME = "Auction Sniper"
   val SNIPER_STATUS_NAME = "sniper status"
 
-  val STATUS_LOST = "Lost"
   val STATUS_JOINING = "Joining"
   var STATUS_BIDDING = "Bidding"
+  val STATUS_WINNING = "Winning"
+  val STATUS_LOST = "Lost"
+  val STATUS_WON = "Won"
 }
 
