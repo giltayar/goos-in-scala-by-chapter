@@ -11,23 +11,20 @@ import com.example._
 
 class FakeAuctionServer(val item: String) extends Logging {
 
-  private val connection = new XMPPConnection(CONNECTION_HOST)
+  private val connection = new XMPPConnection(AUCTION_XMPP_HOST)
 
   private var currentChat: Chat = null
   private val messages = new ArrayBlockingQueue[Message](1)
 
   def startSellingItem() {
-    log.info(s"start Selling Item $item")
-
     connection.connect()
-    connection.login(auctionItemUserName(item), PASSWORD, RESOURCE)
+    connection.login(auctionItemUserName(item), AUCTION_XMPP_USER_PASSWORD, AUCTION_XMPP_RESOURCE)
     connection.getChatManager.addChatListener(createChatListener { (chat, b) =>
       currentChat = chat
       currentChat.addMessageListener(createMessageListener { (chat, message) =>
         messages.add(message)
       })
     })
-    log.info("Added chat listener")
   }
 
   def reportPrice(price: Int, increment: Int, bidder: String) = {
@@ -37,12 +34,12 @@ class FakeAuctionServer(val item: String) extends Logging {
 
   def stop() {
     connection.disconnect()
-    log.info("stopped connection")
   }
 
   def hasReceivedJoinRequestFromSniper() = {
     val message = messages.poll(5, TimeUnit.SECONDS)
 
+    assertThat(message, is(notNullValue()))
     assertThat(message.getBody, equalTo("SOLVersion: 1.1; Event: JOIN;"))
   }
 

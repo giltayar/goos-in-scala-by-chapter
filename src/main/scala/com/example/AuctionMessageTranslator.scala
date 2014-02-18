@@ -22,8 +22,6 @@ class AuctionMessageTranslator(private val sniperId: String,
   def processMessage(chat: Chat, message: Message) = {
     val fields = packEventFrom(message.getBody)
 
-    log.info(s"Processing message ${fields}} (${message.getBody})")
-
     fields("Event") match {
       case "CLOSE" => listener.auctionClosed
       case "PRICE" => listener.currentPrice(

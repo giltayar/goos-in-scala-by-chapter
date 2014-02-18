@@ -4,9 +4,9 @@ import org.jivesoftware.smack.{MessageListener, ChatManagerListener, Chat}
 import org.jivesoftware.smack.packet.Message
 
 package object example {
-  val PASSWORD = "auction"
-  val RESOURCE = "Auction"
-  val CONNECTION_HOST = "localhost"
+  val AUCTION_XMPP_USER_PASSWORD = "auction"
+  val AUCTION_XMPP_RESOURCE = "Auction"
+  val AUCTION_XMPP_HOST = "localhost"
 
   private[example] def createRunnable(f: => Unit) = new Runnable {
     override def run(): Unit = f
