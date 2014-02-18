@@ -1,7 +1,7 @@
 package com.example.tests
 
 import org.specs2.mutable.{After, Specification}
-import com.example.{UserRequestListener, SnipersTableModel, MainWindow}
+import com.example.{SniperPortfolio, UserRequestListener, SnipersTableModel, MainWindow}
 import org.specs2.specification.Scope
 import com.example.tests.endtoend.AuctionSniperDriver
 import com.objogate.wl.swing.probe.ValueMatcherProbe
@@ -20,12 +20,13 @@ class MainWindowTest extends Specification {
   "MainWindow" should {
     "make user request when join button clicked" in new Context {
       val buttonProbe = new ValueMatcherProbe[String](Matchers.equalTo("12345"), "join request")
-      val mainWindow = new MainWindow(snipersTableModel, new UserRequestListener {
-          def joinAuction(itemId: String) = {
-            buttonProbe.setReceivedValue(itemId)
-          }
+      val snipersPortfolio = new SniperPortfolio()
+      val mainWindow = new MainWindow(snipersPortfolio)
+      mainWindow.addUserRequestListener(new UserRequestListener {
+        def joinAuction(itemId: String) = {
+          buttonProbe.setReceivedValue(itemId)
         }
-      )
+      })
 
       driver.startBiddingFor("12345")
       driver.check(buttonProbe)

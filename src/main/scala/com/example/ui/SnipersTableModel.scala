@@ -1,7 +1,11 @@
-package com.example
-import javax.swing.table.AbstractTableModel
+package com.example.ui
 
-private[example] class SnipersTableModel extends AbstractTableModel with SniperListener with Logging {
+import javax.swing.table.AbstractTableModel
+import javax.swing.SwingUtilities
+import com.example._
+
+private[example] class SnipersTableModel extends AbstractTableModel
+    with SniperListener with PortfolioListener with Logging {
   var sniperStates = Array[SniperSnapshot]()
 
   def getColumnCount = SnipersTableModel.Column.values.size
@@ -25,9 +29,15 @@ private[example] class SnipersTableModel extends AbstractTableModel with SniperL
     fireTableRowsUpdated(rowIndex, rowIndex)
   }
 
-  def addSniper(sniper: SniperSnapshot) = {
+  def addSniperSnapshot(sniper: SniperSnapshot) = {
     sniperStates :+= sniper
     fireTableRowsInserted(sniperStates.size - 1, sniperStates.size - 1)
+  }
+
+  def sniperAdded(auctionSniper: AuctionSniper) = {
+    addSniperSnapshot(auctionSniper.snapshot)
+
+    auctionSniper.addSniperListener(new SwingThreadSniperListener(this))
   }
 }
 
@@ -53,4 +63,12 @@ private[example] object SnipersTableModel {
     SniperState.Lost -> "Lost",
     SniperState.Won -> "Won"
   )
+}
+
+private class SwingThreadSniperListener(private val listener: SniperListener) extends SniperListener {
+  def sniperStateChanged(sniperSnapshot: SniperSnapshot) = {
+    SwingUtilities.invokeLater(createRunnable {
+      listener.sniperStateChanged(sniperSnapshot)
+    })
+  }
 }

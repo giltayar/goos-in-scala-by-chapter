@@ -1,10 +1,13 @@
 package com.example
 
 class AuctionSniper(private val itemId: String,
-                    private val auction: Auction,
-                    private val sniperListener: SniperListener)
+                    private val auction: Auction)
     extends AuctionEventListener {
   var snapshot = SniperSnapshot.joining(itemId)
+
+  private var sniperListener: SniperListener = null
+
+  def addSniperListener(sniperListener: SniperListener) = this.sniperListener = sniperListener
 
   def auctionClosed() = changeSnapshotTo(snapshot.closed())
 
@@ -21,6 +24,7 @@ class AuctionSniper(private val itemId: String,
     this.snapshot = snapshot
     sniperListener.sniperStateChanged(snapshot)
   }
+
 }
 
 trait SniperListener {

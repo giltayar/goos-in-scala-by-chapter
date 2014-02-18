@@ -1,13 +1,19 @@
-package com.example
+package com.example.ui
 
 import javax.swing._
 import java.awt.{BorderLayout, Container, FlowLayout}
 import java.util.EventListener
 import java.awt.event.{ActionEvent, ActionListener}
+import com.example.SniperPortfolio
 
-private[example] class MainWindow(private val snipersTableModel: SnipersTableModel,
-                                  private val userRequestListener: UserRequestListener)
+private[example] class MainWindow(private val sniperPortfolio: SniperPortfolio)
     extends JFrame(MainWindow.WINDOW_NAME) {
+  var userRequestListener: UserRequestListener = null
+
+  val snipersTableModel = new SnipersTableModel()
+
+  sniperPortfolio.addPortfolioListener(snipersTableModel)
+
   this setName MainWindow.WINDOW_NAME
   this setDefaultCloseOperation JFrame.EXIT_ON_CLOSE
 
@@ -16,7 +22,10 @@ private[example] class MainWindow(private val snipersTableModel: SnipersTableMod
 
   setVisible(true)
 
-  def makeSnipersTable() = {
+  def addUserRequestListener(userRequestListener: UserRequestListener) =
+    this.userRequestListener = userRequestListener
+
+  private def makeSnipersTable() = {
     val snipersTable = new JTable(snipersTableModel)
 
     snipersTable.setName(MainWindow.SNIPERS_TABLE_NAME)
@@ -24,7 +33,7 @@ private[example] class MainWindow(private val snipersTableModel: SnipersTableMod
     snipersTable
   }
 
-  def makeControls() = {
+  private def makeControls() = {
     val controls = new JPanel(new FlowLayout())
     val itemIdField = new JTextField()
     itemIdField.setColumns(25)
@@ -43,7 +52,7 @@ private[example] class MainWindow(private val snipersTableModel: SnipersTableMod
     controls
   }
 
-  def fillContentPane(table: JTable, controlPanel: JPanel) = {
+  private def fillContentPane(table: JTable, controlPanel: JPanel) = {
     val contentPane: Container = getContentPane
 
     contentPane.setLayout(new BorderLayout)

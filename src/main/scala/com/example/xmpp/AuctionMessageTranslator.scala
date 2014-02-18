@@ -1,7 +1,9 @@
-package com.example
+package com.example.xmpp
 
 import org.jivesoftware.smack.{Chat, MessageListener}
 import org.jivesoftware.smack.packet.Message
+import java.util.EventListener
+import com.example.Logging
 
 object PriceSource extends Enumeration {
   type PriceSource = Value
@@ -10,7 +12,7 @@ object PriceSource extends Enumeration {
   val FromOtherBidder = Value
 }
 
-trait AuctionEventListener {
+trait AuctionEventListener extends EventListener {
   def currentPrice(price: Int, increment: Int, priceSource: PriceSource.Value)
 
   def auctionClosed()
@@ -22,8 +24,10 @@ class AuctionMessageTranslator(private val sniperId: String,
   def processMessage(chat: Chat, message: Message) = {
     val fields = packEventFrom(message.getBody)
 
+    log.info(s"Got message ${message.getBody}, and I am $sniperId")
+
     fields("Event") match {
-      case "CLOSE" => listener.auctionClosed
+      case "CLOSE" => listener.auctionClosed()
       case "PRICE" => listener.currentPrice(
         fields("CurrentPrice").toInt,
         fields("Increment").toInt,

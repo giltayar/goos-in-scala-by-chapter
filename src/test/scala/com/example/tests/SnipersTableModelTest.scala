@@ -4,10 +4,9 @@ import org.specs2.mutable.Specification
 import org.specs2.mock.Mockito
 import org.specs2.specification.Scope
 import com.example.{SniperState, SniperSnapshot, SnipersTableModel}
-import javax.swing.event.{TableModelEvent, TableModelListener}
+import javax.swing.event.TableModelEvent
 import com.example.SnipersTableModel.Column
 import org.specs2.matcher.{MatchResult, Hamcrest}
-import org.hamcrest.beans.SamePropertyValuesAs
 
 class SnipersTableModelTest extends Specification with Mockito with Hamcrest {
 
@@ -23,14 +22,14 @@ class SnipersTableModelTest extends Specification with Mockito with Hamcrest {
     "add sniper snapshot correctly" in new Context {
       val joining = SniperSnapshot.joining("1234")
 
-      snipersTableModel.addSniper(joining)
+      snipersTableModel.addSniperSnapshot(joining)
 
       snipersTableModel.getRowCount must be equalTo 1
       assertRowMatchesSnapshot(snipersTableModel, 0, joining)
     }
 
     "change sniper state" in new Context {
-      snipersTableModel.addSniper(SniperSnapshot.joining("item id"))
+      snipersTableModel.addSniperSnapshot(SniperSnapshot.joining("item id"))
 
       private val snapshot = SniperSnapshot("item id", 555, 666, SniperState.Bidding)
 
@@ -43,8 +42,8 @@ class SnipersTableModelTest extends Specification with Mockito with Hamcrest {
       val joining = SniperSnapshot.joining("1234")
       val joining2 = SniperSnapshot.joining("12345678")
 
-      snipersTableModel.addSniper(joining)
-      snipersTableModel.addSniper(joining2)
+      snipersTableModel.addSniperSnapshot(joining)
+      snipersTableModel.addSniperSnapshot(joining2)
 
       snipersTableModel.getRowCount must be equalTo 2
       assertRowMatchesSnapshot(snipersTableModel, 0, joining)

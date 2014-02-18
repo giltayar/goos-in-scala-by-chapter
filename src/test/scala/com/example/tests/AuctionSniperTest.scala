@@ -14,7 +14,9 @@ class AuctionSniperTest extends Specification with Mockito {
     val AN_ITEM_ID = "anItemId"
     val mockAuction = mock[Auction]
     val mockSniperListener = mock[SniperListener]
-    val auctionSniper = new AuctionSniper(AN_ITEM_ID, mockAuction, mockSniperListener)
+    val auctionSniper = new AuctionSniper(AN_ITEM_ID, mockAuction)
+
+    auctionSniper.addSniperListener(mockSniperListener)
   }
 
   def isInState(state: SniperState) : Matcher[SniperSnapshot] =
