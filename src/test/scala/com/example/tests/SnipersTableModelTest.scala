@@ -31,7 +31,7 @@ class SnipersTableModelTest extends Specification with Mockito with Hamcrest {
     "change sniper state" in new Context {
       snipersTableModel.addSniperSnapshot(SniperSnapshot.joining("item id"))
 
-      private val snapshot = SniperSnapshot("item id", 555, 666, SniperState.Bidding)
+      val snapshot = SniperSnapshot("item id", 555, 666, SniperState.Bidding)
 
       snipersTableModel.sniperStateChanged(snapshot)
 
@@ -48,6 +48,20 @@ class SnipersTableModelTest extends Specification with Mockito with Hamcrest {
       snipersTableModel.getRowCount must be equalTo 2
       assertRowMatchesSnapshot(snipersTableModel, 0, joining)
       assertRowMatchesSnapshot(snipersTableModel, 1, joining2)
+    }
+
+    "has text strings for all SniperState values" in new Context {
+      snipersTableModel.addSniperSnapshot(SniperSnapshot.joining("item id"))
+
+      SniperState.values.foreach {state =>
+
+        val snapshot = SniperSnapshot("item id", 555, 666, state)
+
+        snipersTableModel.sniperStateChanged(snapshot)
+
+        snipersTableModel.getValueAt(0, Column.SniperStatus.id) must not be empty
+
+      }
     }
   }
 

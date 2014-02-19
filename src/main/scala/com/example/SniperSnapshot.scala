@@ -16,9 +16,10 @@ case class SniperSnapshot(itemId: String, lastPrice: Int, lastBid: Int, sniperSt
 
   def bidding(newLastPrice: Int, newLastBid: Int) =
     SniperSnapshot(itemId, newLastPrice, newLastBid, SniperState.Bidding)
+
+  def failed() = SniperSnapshot(itemId, 0, 0, SniperState.Failed)
 }
 
-object SniperSnapshot
-{
+object SniperSnapshot {
   def joining(itemId: String) = SniperSnapshot(itemId, 0, 0, SniperState.Joining)
 }

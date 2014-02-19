@@ -102,6 +102,13 @@ class AuctionSniperTest extends Specification with Mockito {
           sniperStateChanged(SniperSnapshot(AN_ITEM_ID, 1600, 1010, SniperState.Losing)) andThen
         atLeastOne(mockSniperListener).sniperStateChanged(SniperSnapshot(AN_ITEM_ID, 1600, 1010, SniperState.Lost))
     }
+
+    "reports failure when auction failed" in new Context {
+      auctionSniper.currentPrice(123, 45, PriceSource.FromOtherBidder)
+      auctionSniper.auctionFailed()
+
+      there was atLeastOne(mockSniperListener).sniperStateChanged(SniperSnapshot(AN_ITEM_ID, 0, 0, SniperState.Failed))
+    }
   }
 
 }

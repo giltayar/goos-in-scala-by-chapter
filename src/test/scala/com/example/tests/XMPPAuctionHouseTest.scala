@@ -30,6 +30,8 @@ class XMPPAuctionHouseTest extends Specification {
         }
 
         def currentPrice(price: Int, increment: Int, priceSource: PriceSource.Value) = ()
+
+        def auctionFailed() = ()
       })
 
       auction.join()

@@ -13,7 +13,24 @@ private[example] class XMPPAuction(private val sniperId: String,
     s"${auctionItemUserName(auctionItem.id)}@${connection.getServiceName}/$AUCTION_XMPP_RESOURCE",
     null)
 
-  chat.addMessageListener(new AuctionMessageTranslator(sniperId, auctionEventListeners.announce()))
+  listenToChat
+
+  private def listenToChat {
+    val translator = new AuctionMessageTranslator(sniperId, auctionEventListeners.announce())
+
+    chat.addMessageListener(translator)
+
+    def disconnectOnFailListener =
+      new AuctionEventListener {
+        def auctionClosed() = ()
+
+        def currentPrice(price: Int, increment: Int, priceSource: PriceSource.Value) = ()
+
+        def auctionFailed() = chat.removeMessageListener(translator)
+      }
+
+    auctionEventListeners.addListener(disconnectOnFailListener)
+  }
 
   def addAuctionEventListener(listener: AuctionEventListener) = {
     auctionEventListeners.addListener(listener)

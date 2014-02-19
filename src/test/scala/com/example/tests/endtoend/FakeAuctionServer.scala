@@ -54,4 +54,8 @@ class FakeAuctionServer(val item: String) extends Logging {
     if (currentChat != null)
       currentChat.sendMessage("SOLVersion: 1.1; Event: CLOSE;")
   }
+
+  def sendInvalidMessageContaining(message: String) {
+    currentChat.sendMessage(message)
+  }
 }

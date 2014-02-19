@@ -16,24 +16,33 @@ trait AuctionEventListener extends EventListener {
   def currentPrice(price: Int, increment: Int, priceSource: PriceSource.Value)
 
   def auctionClosed()
+
+  def auctionFailed()
 }
 
 class AuctionMessageTranslator(private val sniperId: String,
                                private val listener: AuctionEventListener) extends MessageListener with Logging {
 
   def processMessage(chat: Chat, message: Message) = {
-    val fields = packEventFrom(message.getBody)
+    try {
+      val fields = packEventFrom(message.getBody)
 
-    log.info(s"Got message ${message.getBody}, and I am $sniperId")
+      log.info(s"Got message ${message.getBody}, and I am $sniperId")
 
-    fields("Event") match {
-      case "CLOSE" => listener.auctionClosed()
-      case "PRICE" => listener.currentPrice(
-        fields("CurrentPrice").toInt,
-        fields("Increment").toInt,
-        if (fields("Bidder") == sniperId) PriceSource.FromSniper else PriceSource.FromOtherBidder)
-      case _ => ()
+      fields("Event") match {
+        case "CLOSE" => listener.auctionClosed()
+        case "PRICE" => listener.currentPrice(
+          fields("CurrentPrice").toInt,
+          fields("Increment").toInt,
+          if (fields("Bidder") == sniperId) PriceSource.FromSniper else PriceSource.FromOtherBidder)
+        case _ => ()
 
+      }
+    }
+    catch {
+      case e: Exception =>
+        log.info(s"Exception when processing ${message.getBody}: e=$e")
+        listener.auctionFailed()
     }
   }
 

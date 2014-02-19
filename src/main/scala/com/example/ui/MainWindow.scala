@@ -77,13 +77,6 @@ private[example] object MainWindow {
 
   val WINDOW_NAME = "Auction Sniper"
   val SNIPERS_TABLE_NAME = "SnipersTable"
-
-  val STATUS_JOINING = "Joining"
-  var STATUS_BIDDING = "Bidding"
-  val STATUS_LOSING = "Losing"
-  val STATUS_WINNING = "Winning"
-  val STATUS_LOST = "Lost"
-  val STATUS_WON = "Won"
 }
 
 trait UserRequestListener extends EventListener {

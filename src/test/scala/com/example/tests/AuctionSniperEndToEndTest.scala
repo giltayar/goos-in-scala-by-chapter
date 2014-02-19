@@ -127,6 +127,33 @@ class AuctionSniperEndToEndTest extends Specification with Logging {
       auction.announceClosed()
       application.showsSniperHasLostAuction(auction, 1207, 1098)
     }
+
+    "show invalid auction and stop responding to event" in new RunnerAndTwoAuctionServers {
+      val BROKEN_MESSAGE = "a broken message"
+
+      auction.startSellingItem()
+      auction2.startSellingItem()
+      application.startBiddingIn(auction, auction2)
+      auction.hasReceivedJoinRequestFromSniper()
+
+      auction.reportPrice(500, 20, "other bidder")
+      auction.hasReceivedBid(520)
+
+      auction.sendInvalidMessageContaining(BROKEN_MESSAGE)
+      application.showsSniperHasFailed(auction)
+
+      auction.reportPrice(520, 21, "other bidder")
+      waitForAnotherAuctionEvent()
+
+      application.reportsInvalidMessage(auction, BROKEN_MESSAGE)
+      application.showsSniperHasFailed(auction)
+
+      def waitForAnotherAuctionEvent() {
+        auction2.hasReceivedJoinRequestFromSniper()
+        auction2.reportPrice(600, 6, "other bidder")
+        application.hasShownSniperIsBidding(auction2, 600, 606)
+      }
+    }
   }
 }
 

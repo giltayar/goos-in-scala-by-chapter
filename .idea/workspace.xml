@@ -2,21 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f593564d-dbe8-472e-8ba9-a3940d593ec0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/scala/com/example/Item.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/ApplicationRunner.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/ApplicationRunner.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/example/xmpp/AuctionMessageTranslator.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/example/xmpp/AuctionMessageTranslator.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionMessageTranslatorTest.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionMessageTranslatorTest.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/example/AuctionSniper.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/example/AuctionSniper.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionSniperEndToEndTest.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionSniperEndToEndTest.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionSniperTest.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionSniperTest.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/example/Main.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/example/Main.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/FakeAuctionServer.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/FakeAuctionServer.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/example/ui/MainWindow.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/example/ui/MainWindow.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/com/example/tests/MainWindowTest.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/example/tests/MainWindowTest.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/example/SniperLauncher.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/example/SniperLauncher.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/example/SniperSnapshot.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/example/SniperSnapshot.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/example/ui/SnipersTableModel.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/example/ui/SnipersTableModel.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/com/example/tests/SnipersTableModelTest.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/example/tests/SnipersTableModelTest.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuction.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuction.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuctionHouse.scala" afterPath="$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuctionHouse.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/scala/com/example/tests/XMPPAuctionHouseTest.scala" afterPath="$PROJECT_DIR$/src/test/scala/com/example/tests/XMPPAuctionHouseTest.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -89,6 +86,36 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/main/scala/com/example/AuctionSniper.scala" line="19" class="com.example.AuctionSniper" package="com.example">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="true" />
+        <option name="COUNT_FILTER" value="2" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;Scala" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;Scala" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuction.scala" line="28" class="com.example.xmpp.XMPPAuction$&lt;anonymous&gt;" package="com.example.xmpp">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
@@ -102,25 +129,63 @@
       <file leaf-file-name="AuctionSniperEndToEndTest.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionSniperEndToEndTest.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="0" selection-start="1630" selection-end="1630" vertical-scroll-proportion="0.0" vertical-offset="643" max-vertical-offset="2025">
+            <state line="137" column="0" selection-start="0" selection-end="4856" vertical-scroll-proportion="0.0" vertical-offset="1741" max-vertical-offset="2430">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApplicationRunner.scala" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ApplicationRunner.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/ApplicationRunner.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="61" selection-start="1547" selection-end="1547" vertical-scroll-proportion="0.0" vertical-offset="328" max-vertical-offset="1785">
+            <state line="73" column="49" selection-start="2431" selection-end="2431" vertical-scroll-proportion="0.33229813" vertical-offset="761" max-vertical-offset="1935">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainWindow.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/ui/MainWindow.scala">
+      <file leaf-file-name="XMPPAuctionHouse.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuctionHouse.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="0" selection-start="1844" selection-end="1844" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="1395">
+            <state line="8" column="14" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+              <folding>
+                <element signature="e#26#70#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XMPPAuction.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuction.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="0" selection-start="932" selection-end="932" vertical-scroll-proportion="0.0" vertical-offset="21" max-vertical-offset="765">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Chat.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ivy2/cache/org.igniterealtime.smack/smack/srcs/smack-3.2.1-sources.jar!/org/jivesoftware/smack/Chat.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="131" column="0" selection-start="4399" selection-end="4399" vertical-scroll-proportion="0.0" vertical-offset="1312" max-vertical-offset="2370">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FakeAuctionServer.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/FakeAuctionServer.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="6" selection-start="982" selection-end="982" vertical-scroll-proportion="0.0" vertical-offset="116" max-vertical-offset="900">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuctionMessageTranslator.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/xmpp/AuctionMessageTranslator.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="30" selection-start="520" selection-end="520" vertical-scroll-proportion="0.0" vertical-offset="37" max-vertical-offset="810">
               <folding />
             </state>
           </provider>
@@ -129,17 +194,19 @@
       <file leaf-file-name="AuctionSniper.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/AuctionSniper.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="34" selection-start="929" selection-end="929" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="825">
+            <state line="19" column="12" selection-start="691" selection-end="691" vertical-scroll-proportion="0.0" vertical-offset="52" max-vertical-offset="930">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Item.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/Item.scala">
+      <file leaf-file-name="Announcer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Announcer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
-              <folding />
+            <state line="10" column="0" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1065">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -147,46 +214,10 @@
       <file leaf-file-name="AuctionSniperTest.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionSniperTest.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="102" column="47" selection-start="3977" selection-end="3977" vertical-scroll-proportion="0.0" vertical-offset="968" max-vertical-offset="1695">
+            <state line="76" column="24" selection-start="2782" selection-end="2782" vertical-scroll-proportion="0.0" vertical-offset="1073" max-vertical-offset="1800">
               <folding>
                 <element signature="e#27#66#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Auction.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/Auction.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="7" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="XMPPAuction.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuction.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="6" selection-start="860" selection-end="860" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SnipersTableModel.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/ui/SnipersTableModel.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="43" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.0" vertical-offset="103" max-vertical-offset="1185">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SniperSnapshot.scala" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/SniperSnapshot.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="876" selection-end="876" vertical-scroll-proportion="0.43848965" vertical-offset="0" max-vertical-offset="821">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -217,8 +248,6 @@
         <option value="$PROJECT_DIR$/src/main/scala/com/example/sniperSnapshot.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/example/package.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/SnipersTableModelTest.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/SnipersTableModelTest.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/FakeAuctionServer.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/example/MainWinow.java" />
         <option value="$PROJECT_DIR$/src/main/scala/com/example/Announcer.scala" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/Announcer.java" />
@@ -231,21 +260,23 @@
         <option value="$PROJECT_DIR$/src/main/scala/com/example/SnipersTableModel.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/example/Main.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/example/MainWindow.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/example/xmpp/AuctionMessageTranslator.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionMessageTranslatorTest.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/MainWindowTest.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/example/ui/MainWindow.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/example/SniperLauncher.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuctionHouse.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuction.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/XMPPAuctionHouseTest.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/example/Item.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/ApplicationRunner.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionSniperEndToEndTest.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/example/AuctionSniper.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/FakeAuctionServer.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/XMPPAuctionHouseTest.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/example/xmpp/AuctionMessageTranslator.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionMessageTranslatorTest.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionSniperTest.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/example/ui/SnipersTableModel.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/example/SniperSnapshot.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/SnipersTableModelTest.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/example/ui/SnipersTableModel.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/example/ui/MainWindow.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/example/AuctionSniper.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuction.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionSniperEndToEndTest.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/ApplicationRunner.scala" />
       </list>
     </option>
   </component>
@@ -334,6 +365,102 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="goos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="goos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scala" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="goos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="goos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scala" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="goos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="goos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="goos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="goos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -349,7 +476,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="options.lastSelected" value="preferences.keymap" />
+    <property name="options.lastSelected" value="reference.idesettings.debugger.dataviews" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -385,43 +512,7 @@
       <recent name="com.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Specs2.com.example.tests Tests">
-    <configuration default="false" name="com.example.tests.AuctionSniperEndToEndTest::bid for multiple items" type="Specs2RunConfiguration" factoryName="Specs2" temporary="true" nameIsGenerated="true">
-      <module name="goos" />
-      <setting name="path" value="com.example.tests.AuctionSniperEndToEndTest" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value=" -Dspecs2.ex=&quot;bid for multiple items&quot;" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="file://$PROJECT_DIR$" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="bid for multiple items" />
-      <setting name="testKind" value="Test name" />
-      <setting name="showProgressMessages" value="true" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="com.example.tests.MainWindowTest::make user request when join button clicked" type="Specs2RunConfiguration" factoryName="Specs2" temporary="true" nameIsGenerated="true">
-      <module name="goos" />
-      <setting name="path" value="com.example.tests.MainWindowTest" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value=" -Dspecs2.ex=&quot;make user request when join button clicked&quot;" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="file://$PROJECT_DIR$" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="make user request when join button clicked" />
-      <setting name="testKind" value="Test name" />
-      <setting name="showProgressMessages" value="true" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Specs2.com.example.tests.AuctionSniperEndToEndTest::show invalid auction and stop responding to event">
     <configuration default="false" name="AuctionSniperTest" type="Specs2RunConfiguration" factoryName="Specs2" temporary="true">
       <module name="goos" />
       <setting name="path" value="com.example.tests.AuctionSniperTest" />
@@ -443,6 +534,63 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
+    <configuration default="false" name="com.example.tests.AuctionSniperEndToEndTest::show invalid auction and stop responding to event" type="Specs2RunConfiguration" factoryName="Specs2" temporary="true" nameIsGenerated="true">
+      <module name="goos" />
+      <setting name="path" value="com.example.tests.AuctionSniperEndToEndTest" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value=" -Dspecs2.ex=&quot;show invalid auction and stop responding to event&quot;" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="show invalid auction and stop responding to event" />
+      <setting name="testKind" value="Test name" />
+      <setting name="showProgressMessages" value="true" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="com.example.tests.AuctionMessageTranslatorTest::notify of failed auction when getting a bad message" type="Specs2RunConfiguration" factoryName="Specs2" temporary="true" nameIsGenerated="true">
+      <module name="goos" />
+      <setting name="path" value="com.example.tests.AuctionMessageTranslatorTest" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value=" -Dspecs2.ex=&quot;notify of failed auction when getting a bad message&quot;" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="notify of failed auction when getting a bad message" />
+      <setting name="testKind" value="Test name" />
+      <setting name="showProgressMessages" value="true" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="SnipersTableModelTest" type="Specs2RunConfiguration" factoryName="Specs2" temporary="true">
+      <module name="goos" />
+      <setting name="path" value="com.example.tests.SnipersTableModelTest" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="false" name="com.example.tests.AuctionSniperEndToEndTest::lose auction when the price is too high" type="Specs2RunConfiguration" factoryName="Specs2" temporary="true" nameIsGenerated="true">
       <module name="goos" />
       <setting name="path" value="com.example.tests.AuctionSniperEndToEndTest" />
@@ -454,22 +602,13 @@
       <setting name="testName" value="lose auction when the price is too high" />
       <setting name="testKind" value="Test name" />
       <setting name="showProgressMessages" value="true" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="com.example.tests.AuctionSniperEndToEndTest::join, bid, and lose" type="Specs2RunConfiguration" factoryName="Specs2" temporary="true" nameIsGenerated="true">
-      <module name="goos" />
-      <setting name="path" value="com.example.tests.AuctionSniperEndToEndTest" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value=" -Dspecs2.ex=&quot;join, bid, and lose&quot;" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="file://$PROJECT_DIR$" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="join, bid, and lose" />
-      <setting name="testKind" value="Test name" />
-      <setting name="showProgressMessages" value="true" />
-      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -673,20 +812,20 @@
       <item index="0" class="java.lang.String" itemvalue="Specs2.com.example.tests Tests" />
       <item index="1" class="java.lang.String" itemvalue="Specs2.AuctionMessageTranslatorTest" />
       <item index="2" class="java.lang.String" itemvalue="Specs2.AuctionSniperEndToEndTest" />
-      <item index="3" class="java.lang.String" itemvalue="Specs2.com.example.tests.AuctionSniperEndToEndTest::bid for multiple items" />
-      <item index="4" class="java.lang.String" itemvalue="Specs2.XMPPAuctionHouseTest" />
-      <item index="5" class="java.lang.String" itemvalue="Specs2.com.example.tests.MainWindowTest::make user request when join button clicked" />
-      <item index="6" class="java.lang.String" itemvalue="Specs2.AuctionSniperTest" />
-      <item index="7" class="java.lang.String" itemvalue="Specs2.com.example.tests.AuctionSniperEndToEndTest::lose auction when the price is too high" />
-      <item index="8" class="java.lang.String" itemvalue="Specs2.com.example.tests.AuctionSniperEndToEndTest::join, bid, and lose" />
+      <item index="3" class="java.lang.String" itemvalue="Specs2.XMPPAuctionHouseTest" />
+      <item index="4" class="java.lang.String" itemvalue="Specs2.AuctionSniperTest" />
+      <item index="5" class="java.lang.String" itemvalue="Specs2.com.example.tests.AuctionSniperEndToEndTest::show invalid auction and stop responding to event" />
+      <item index="6" class="java.lang.String" itemvalue="Specs2.com.example.tests.AuctionMessageTranslatorTest::notify of failed auction when getting a bad message" />
+      <item index="7" class="java.lang.String" itemvalue="Specs2.SnipersTableModelTest" />
+      <item index="8" class="java.lang.String" itemvalue="Specs2.com.example.tests.AuctionSniperEndToEndTest::lose auction when the price is too high" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Specs2.AuctionSniperTest" />
-        <item index="1" class="java.lang.String" itemvalue="Specs2.com.example.tests.AuctionSniperEndToEndTest::join, bid, and lose" />
-        <item index="2" class="java.lang.String" itemvalue="Specs2.com.example.tests.AuctionSniperEndToEndTest::lose auction when the price is too high" />
-        <item index="3" class="java.lang.String" itemvalue="Specs2.com.example.tests.AuctionSniperEndToEndTest::bid for multiple items" />
-        <item index="4" class="java.lang.String" itemvalue="Specs2.com.example.tests.MainWindowTest::make user request when join button clicked" />
+        <item index="0" class="java.lang.String" itemvalue="Specs2.com.example.tests.AuctionSniperEndToEndTest::show invalid auction and stop responding to event" />
+        <item index="1" class="java.lang.String" itemvalue="Specs2.com.example.tests.AuctionSniperEndToEndTest::lose auction when the price is too high" />
+        <item index="2" class="java.lang.String" itemvalue="Specs2.AuctionSniperTest" />
+        <item index="3" class="java.lang.String" itemvalue="Specs2.SnipersTableModelTest" />
+        <item index="4" class="java.lang.String" itemvalue="Specs2.com.example.tests.AuctionMessageTranslatorTest::notify of failed auction when getting a bad message" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
@@ -739,9 +878,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1174" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17424242" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17424242" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2869318" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -756,8 +895,8 @@
       <window_info id="SBT" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18123667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26325756" sideWeight="0.6629393" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18336888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34185606" sideWeight="0.6629393" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -805,32 +944,17 @@
     <option name="LAST_COMMIT_MESSAGE" value="Walking Skeleton test passes" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.ivy2/cache/com.googlecode.windowlicker/windowlicker-swing/srcs/windowlicker-swing-r268-sources.jar!/com/objogate/wl/swing/ComponentSelector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="17" selection-start="171" selection-end="171" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/com.googlecode.windowlicker/windowlicker-swing/srcs/windowlicker-swing-r268-sources.jar!/com/objogate/wl/swing/driver/JComponentDriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="67" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1065">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/org.specs2/specs2_2.10/jars/specs2_2.10-2.3.7.jar!/org/specs2/matcher/AnyMatchers.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="6" selection-start="33" selection-end="33" vertical-scroll-proportion="0.022058824" vertical-offset="0" max-vertical-offset="680" />
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.specs2/specs2_2.10/jars/specs2_2.10-2.3.7.jar!/org/specs2/matcher/NumericBaseMatchers.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="22" selection-start="49" selection-end="49" vertical-scroll-proportion="0.021337127" vertical-offset="0" max-vertical-offset="703" />
@@ -919,13 +1043,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/SnipersTableModelTest.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="38" selection-start="926" selection-end="926" vertical-scroll-proportion="0.41208792" vertical-offset="0" max-vertical-offset="930">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/JavaMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="11" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
@@ -944,17 +1061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="17" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Announcer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="25" selection-start="1087" selection-end="1087" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#627#881#0" expanded="true" />
-            <element signature="e#862#863#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1011,22 +1117,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/xmpp/AuctionMessageTranslator.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="30" selection-start="497" selection-end="497" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionMessageTranslatorTest.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="21" selection-start="903" selection-end="903" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
-          <folding>
-            <element signature="e#27#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.10.3-sources.jar!/scala/Product.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="6" selection-start="920" selection-end="920" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
@@ -1048,44 +1138,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/Main.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="6" selection-start="852" selection-end="852" vertical-scroll-proportion="0.4265403" vertical-offset="0" max-vertical-offset="844">
-          <folding>
-            <element signature="e#21#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/FakeAuctionServer.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1330" selection-end="1330" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="840">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuctionHouse.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="14" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <folding>
-            <element signature="e#26#70#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/SniperLauncher.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="35" selection-start="447" selection-end="447" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/XMPPAuctionHouseTest.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="1192" selection-end="1192" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-          <folding>
-            <element signature="e#27#75#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1110,34 +1166,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/ui/MainWindow.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="1844" selection-end="1844" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="1395">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/ApplicationRunner.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="61" selection-start="1547" selection-end="1547" vertical-scroll-proportion="0.0" vertical-offset="328" max-vertical-offset="1785">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionSniperEndToEndTest.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="0" selection-start="1630" selection-end="1630" vertical-scroll-proportion="0.0" vertical-offset="643" max-vertical-offset="2025">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuction.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="6" selection-start="860" selection-end="860" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/Auction.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="7" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
@@ -1145,16 +1173,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.10.3-sources.jar!/scala/NotImplementedError.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="6" selection-start="791" selection-end="791" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/XMPPAuctionHouseTest.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="51" selection-start="988" selection-end="988" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.10.3-sources.jar!/scala/collection/MapLike.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="139" column="6" selection-start="4807" selection-end="4807" vertical-scroll-proportion="0.0" vertical-offset="1708" max-vertical-offset="5280">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionMessageTranslatorTest.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="31" selection-start="408" selection-end="408" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1005">
+          <folding>
+            <element signature="e#27#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/SniperSnapshot.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="54" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/SnipersTableModelTest.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="0" selection-start="1993" selection-end="1993" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="1140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/ui/SnipersTableModel.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="43" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.0" vertical-offset="103" max-vertical-offset="1185">
+        <state line="65" column="33" selection-start="2220" selection-end="2220" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="1200">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/ui/MainWindow.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="0" selection-start="2370" selection-end="2370" vertical-scroll-proportion="0.0" vertical-offset="588" max-vertical-offset="1290">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/Main.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="49" selection-start="348" selection-end="348" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+          <folding>
+            <element signature="e#21#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionSniperTest.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="47" selection-start="3977" selection-end="3977" vertical-scroll-proportion="0.0" vertical-offset="968" max-vertical-offset="1695">
+        <state line="76" column="24" selection-start="2782" selection-end="2782" vertical-scroll-proportion="0.0" vertical-offset="1073" max-vertical-offset="1800">
           <folding>
             <element signature="e#27#66#0" expanded="true" />
           </folding>
@@ -1163,14 +1251,67 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/AuctionSniper.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="34" selection-start="929" selection-end="929" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="825">
+        <state line="19" column="12" selection-start="691" selection-end="691" vertical-scroll-proportion="0.0" vertical-offset="52" max-vertical-offset="930">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/SniperSnapshot.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuctionHouse.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="876" selection-end="876" vertical-scroll-proportion="0.43848965" vertical-offset="0" max-vertical-offset="821">
+        <state line="8" column="14" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+          <folding>
+            <element signature="e#26#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/xmpp/AuctionMessageTranslator.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="30" selection-start="520" selection-end="520" vertical-scroll-proportion="0.0" vertical-offset="37" max-vertical-offset="810">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.igniterealtime.smack/smack/srcs/smack-3.2.1-sources.jar!/org/jivesoftware/smack/Chat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="131" column="0" selection-start="4399" selection-end="4399" vertical-scroll-proportion="0.0" vertical-offset="1312" max-vertical-offset="2370">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/example/xmpp/XMPPAuction.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="932" selection-end="932" vertical-scroll-proportion="0.0" vertical-offset="21" max-vertical-offset="765">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/Announcer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1065">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/FakeAuctionServer.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="6" selection-start="982" selection-end="982" vertical-scroll-proportion="0.0" vertical-offset="116" max-vertical-offset="900">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/AuctionSniperEndToEndTest.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="137" column="0" selection-start="0" selection-end="4856" vertical-scroll-proportion="0.0" vertical-offset="1741" max-vertical-offset="2430">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/com/example/tests/endtoend/ApplicationRunner.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="49" selection-start="2431" selection-end="2431" vertical-scroll-proportion="0.33229813" vertical-offset="761" max-vertical-offset="1935">
           <folding />
         </state>
       </provider>

@@ -33,6 +33,9 @@ class AuctionSniper(private val item: Item,
     sniperListener.sniperStateChanged(snapshot)
   }
 
+  def auctionFailed() = {
+    changeSnapshotTo(snapshot.failed())
+  }
 }
 
 trait SniperListener {
@@ -41,9 +44,13 @@ trait SniperListener {
 
 object SniperState extends Enumeration {
   val Joining = Value
+
   val Bidding = Value
   val Winning = Value
   val Losing = Value
+
   val Lost = Value
   val Won = Value
+
+  val Failed = Value
 }

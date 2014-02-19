@@ -14,24 +14,26 @@ class ApplicationRunner extends Logging {
   var driver : AuctionSniperDriver = null
 
   def startBiddingIn(auctions: FakeAuctionServer*) {
-
     startSniperApplication()
 
-    auctions.foreach {fakeAuctionServer =>
-      driver.startBiddingFor(fakeAuctionServer.item, None)
-      driver.showsSniperStatus(fakeAuctionServer.item, 0, 0, MainWindow.STATUS_JOINING)
-    }
+    startBiddingFor(None, auctions:_*)
   }
+
   def startBiddingWithStopPrice(stopPrice: Int, auctions: FakeAuctionServer*) {
     startSniperApplication()
 
-    auctions.foreach {fakeAuctionServer =>
-      driver.startBiddingFor(fakeAuctionServer.item, Some(stopPrice))
-      driver.showsSniperStatus(fakeAuctionServer.item, 0, 0, MainWindow.STATUS_JOINING)
+    startBiddingFor(Some(stopPrice), auctions:_*)
+  }
+
+  private def startBiddingFor(stopPrice: Option[Int], auctions: FakeAuctionServer*) {
+    auctions.foreach {
+      fakeAuctionServer =>
+        driver.startBiddingFor(fakeAuctionServer.item, stopPrice)
+        driver.showsSniperStatus(fakeAuctionServer.item, 0, 0, "Joining")
     }
   }
 
-  def startSniperApplication() = {
+def startSniperApplication() = {
     val thread = new Thread(createRunnable {
       Main.main(Array(ApplicationRunner.SNIPER_ID))
     })
@@ -39,29 +41,37 @@ class ApplicationRunner extends Logging {
     thread setDaemon true
     thread.start()
 
-    driver = new AuctionSniperDriver(1000)
+    driver = new AuctionSniperDriver(5000)
     driver.hasTitle(MainWindow.WINDOW_NAME)
     driver.hasColumnTitles()
   }
 
   def showsSniperHasLostAuction(auction: FakeAuctionServer, lastPrice: Int, lastBid: Int) {
-    driver.showsSniperStatus(auction.item, lastPrice, lastBid, MainWindow.STATUS_LOST)
+    driver.showsSniperStatus(auction.item, lastPrice, lastBid, "Lost")
   }
 
   def showsSniperHasWonAuction(auction: FakeAuctionServer, lastPrice: Int) {
-    driver.showsSniperStatus(auction.item, lastPrice, lastPrice, MainWindow.STATUS_WON)
+    driver.showsSniperStatus(auction.item, lastPrice, lastPrice, "Won")
   }
 
   def hasShownSniperIsBidding(auction: FakeAuctionServer, lastPrice: Int, lastBid: Int) {
-    driver.showsSniperStatus(auction.item, lastPrice, lastBid, MainWindow.STATUS_BIDDING)
+    driver.showsSniperStatus(auction.item, lastPrice, lastBid, "Bidding")
   }
 
   def hasShownSniperIsLosing(auction: FakeAuctionServer, lastPrice: Int, lastBid: Int) {
-    driver.showsSniperStatus(auction.item, lastPrice, lastBid, MainWindow.STATUS_LOSING)
+    driver.showsSniperStatus(auction.item, lastPrice, lastBid, "Losing")
   }
 
   def hasShownSniperIsWinning(auction: FakeAuctionServer, lastPrice: Int) {
-    driver.showsSniperStatus(auction.item, lastPrice, lastPrice, MainWindow.STATUS_WINNING)
+    driver.showsSniperStatus(auction.item, lastPrice, lastPrice, "Winning")
+  }
+
+  def showsSniperHasFailed(auction: FakeAuctionServer) {
+    driver.showsSniperStatus(auction.item, 0, 0, "Failed")
+  }
+
+  def reportsInvalidMessage(auction: FakeAuctionServer, brokenMessage: String) {
+    // I didn't implement this part of chapter 19
   }
 
   def stop() {
