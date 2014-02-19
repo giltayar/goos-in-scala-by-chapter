@@ -5,12 +5,13 @@ import org.specs2.matcher.Scope
 import com.example._
 import com.example.tests.endtoend.FakeAuctionServer
 import java.util.concurrent.{TimeUnit, CountDownLatch}
+import com.example.xmpp.{AuctionEventListener, PriceSource, XMPPAuctionHouse}
 
 class XMPPAuctionHouseTest extends Specification {
   trait Context extends Scope with After {
     val auctionHouse = XMPPAuctionHouse.connect(AUCTION_XMPP_HOST, "sniper", AUCTION_XMPP_USER_PASSWORD)
     val auctionServer = new FakeAuctionServer("1234")
-    val auction = auctionHouse.joinAuction("sniper", auctionServer.item)
+    val auction = auctionHouse.joinAuction("sniper", Item(auctionServer.item, None))
 
     auctionServer.startSellingItem()
 

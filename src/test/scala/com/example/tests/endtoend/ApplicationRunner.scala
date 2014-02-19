@@ -8,6 +8,7 @@ import com.example._
 import javax.swing.table.JTableHeader
 import javax.swing.{JButton, JTextField}
 import com.objogate.wl.swing.driver._
+import com.example.ui.MainWindow
 
 class ApplicationRunner extends Logging {
   var driver : AuctionSniperDriver = null
@@ -17,7 +18,15 @@ class ApplicationRunner extends Logging {
     startSniperApplication()
 
     auctions.foreach {fakeAuctionServer =>
-      driver.startBiddingFor(fakeAuctionServer.item)
+      driver.startBiddingFor(fakeAuctionServer.item, None)
+      driver.showsSniperStatus(fakeAuctionServer.item, 0, 0, MainWindow.STATUS_JOINING)
+    }
+  }
+  def startBiddingWithStopPrice(stopPrice: Int, auctions: FakeAuctionServer*) {
+    startSniperApplication()
+
+    auctions.foreach {fakeAuctionServer =>
+      driver.startBiddingFor(fakeAuctionServer.item, Some(stopPrice))
       driver.showsSniperStatus(fakeAuctionServer.item, 0, 0, MainWindow.STATUS_JOINING)
     }
   }
@@ -35,8 +44,8 @@ class ApplicationRunner extends Logging {
     driver.hasColumnTitles()
   }
 
-  def showsSniperHasLostAuction(auction: FakeAuctionServer, lastPrice: Int) {
-    driver.showsSniperStatus(auction.item, lastPrice, lastPrice, MainWindow.STATUS_LOST)
+  def showsSniperHasLostAuction(auction: FakeAuctionServer, lastPrice: Int, lastBid: Int) {
+    driver.showsSniperStatus(auction.item, lastPrice, lastBid, MainWindow.STATUS_LOST)
   }
 
   def showsSniperHasWonAuction(auction: FakeAuctionServer, lastPrice: Int) {
@@ -45,6 +54,10 @@ class ApplicationRunner extends Logging {
 
   def hasShownSniperIsBidding(auction: FakeAuctionServer, lastPrice: Int, lastBid: Int) {
     driver.showsSniperStatus(auction.item, lastPrice, lastBid, MainWindow.STATUS_BIDDING)
+  }
+
+  def hasShownSniperIsLosing(auction: FakeAuctionServer, lastPrice: Int, lastBid: Int) {
+    driver.showsSniperStatus(auction.item, lastPrice, lastBid, MainWindow.STATUS_LOSING)
   }
 
   def hasShownSniperIsWinning(auction: FakeAuctionServer, lastPrice: Int) {
@@ -68,12 +81,20 @@ class AuctionSniperDriver(timeoutMillis: Int) extends
       ComponentDriver.named(MainWindow.WINDOW_NAME), ComponentDriver.showingOnScreen()),
     new AWTEventQueueProber(timeoutMillis, 100)) with Logging {
 
-  def itemIdField = new JTextFieldDriver(this, classOf[JTextField], ComponentDriver.named(MainWindow.NEW_ITEM_ID_NAME))
+  private def textField(id: String) = new JTextFieldDriver(this, classOf[JTextField], ComponentDriver.named(id))
+
+  def itemIdField = textField(MainWindow.NEW_ITEM_ID_NAME)
+  def stopPriceField = textField(MainWindow.STOP_PRICE_NAME)
   def bidButton = new JButtonDriver(this, classOf[JButton], ComponentDriver.named(MainWindow.JOIN_BUTTON_NAME))
 
-  def startBiddingFor(auctionItem: String) = {
+  def startBiddingFor(auctionItem: String, stopPrice: Option[Int] = None) = {
     itemIdField.focusWithMouse()
     itemIdField.replaceAllText(auctionItem)
+
+    stopPrice foreach {x =>
+      stopPriceField.focusWithMouse()
+      stopPriceField.replaceAllText(x.toString)
+    }
 
     bidButton.click()
   }

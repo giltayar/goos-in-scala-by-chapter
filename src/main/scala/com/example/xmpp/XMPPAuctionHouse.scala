@@ -1,11 +1,12 @@
 package com.example.xmpp
 
 import org.jivesoftware.smack.XMPPConnection
+import com.example.Item
 
 class XMPPAuctionHouse(private val connection: XMPPConnection) {
 
-  def joinAuction(sniperId: String, itemId: String) = {
-    new XMPPAuction(sniperId, connection, itemId)
+  def joinAuction(sniperId: String, item: Item) = {
+    new XMPPAuction(sniperId, connection, item)
   }
 
   def disconnect() = connection.disconnect()

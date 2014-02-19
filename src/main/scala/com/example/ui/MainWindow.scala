@@ -4,7 +4,7 @@ import javax.swing._
 import java.awt.{BorderLayout, Container, FlowLayout}
 import java.util.EventListener
 import java.awt.event.{ActionEvent, ActionListener}
-import com.example.SniperPortfolio
+import com.example.{Item, SniperPortfolio}
 
 private[example] class MainWindow(private val sniperPortfolio: SniperPortfolio)
     extends JFrame(MainWindow.WINDOW_NAME) {
@@ -40,11 +40,18 @@ private[example] class MainWindow(private val sniperPortfolio: SniperPortfolio)
     itemIdField.setName(MainWindow.NEW_ITEM_ID_NAME)
     controls.add(itemIdField)
 
+    val stopPriceField = new JTextField()
+    stopPriceField.setColumns(9)
+    stopPriceField.setName(MainWindow.STOP_PRICE_NAME)
+    controls.add(stopPriceField)
+
+
     val joinAuctionButton = new JButton("Join Auction")
     joinAuctionButton.setName(MainWindow.JOIN_BUTTON_NAME)
     joinAuctionButton.addActionListener(new ActionListener(){
       def actionPerformed(e: ActionEvent) = {
-        userRequestListener.joinAuction(itemIdField.getText)
+        userRequestListener.joinAuction(Item(itemIdField.getText,
+          if (!stopPriceField.getText.trim.isEmpty) Some(stopPriceField.getText.toInt) else None))
       }
     })
     controls.add(joinAuctionButton)
@@ -66,17 +73,19 @@ private[example] object MainWindow {
   val JOIN_BUTTON_NAME = "JoinButton"
 
   val NEW_ITEM_ID_NAME = "NewItem"
+  val STOP_PRICE_NAME = "StopPrice"
 
   val WINDOW_NAME = "Auction Sniper"
   val SNIPERS_TABLE_NAME = "SnipersTable"
 
   val STATUS_JOINING = "Joining"
   var STATUS_BIDDING = "Bidding"
+  val STATUS_LOSING = "Losing"
   val STATUS_WINNING = "Winning"
   val STATUS_LOST = "Lost"
   val STATUS_WON = "Won"
 }
 
 trait UserRequestListener extends EventListener {
-  def joinAuction(itemId: String)
+  def joinAuction(item: Item)
 }

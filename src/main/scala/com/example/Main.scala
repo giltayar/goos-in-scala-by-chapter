@@ -2,6 +2,8 @@ package com.example
 
 import javax.swing._
 import java.awt.event.{WindowEvent, WindowAdapter}
+import com.example.xmpp.XMPPAuctionHouse
+import com.example.ui.MainWindow
 
 object Main extends App with Logging {
   private val sniperId = this.args(0)

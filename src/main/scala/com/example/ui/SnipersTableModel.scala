@@ -60,6 +60,7 @@ private[example] object SnipersTableModel {
     SniperState.Bidding -> "Bidding",
     SniperState.Joining -> "Joining",
     SniperState.Winning -> "Winning",
+    SniperState.Losing -> "Losing",
     SniperState.Lost -> "Lost",
     SniperState.Won -> "Won"
   )

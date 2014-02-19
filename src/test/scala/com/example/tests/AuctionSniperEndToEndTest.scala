@@ -17,9 +17,13 @@ class AuctionSniperEndToEndTest extends Specification with Logging {
       application.stop()
     }
 
-    def joinAuction() = {
+    def joinAuction(stopPrice: Option[Int] = None) = {
       auction.startSellingItem()
-      application.startBiddingIn(auction)
+      stopPrice match {
+        case Some(x) => application.startBiddingWithStopPrice(x, auction)
+        case None => application.startBiddingIn(auction)
+      }
+
       auction.hasReceivedJoinRequestFromSniper()
     }
   }
@@ -32,10 +36,15 @@ class AuctionSniperEndToEndTest extends Specification with Logging {
       super.after
     }
 
-    override def joinAuction() = {
+    override def joinAuction(stopPrice: Option[Int] = None) = {
       auction.startSellingItem()
       auction2.startSellingItem()
-      application.startBiddingIn(auction, auction2)
+      stopPrice match {
+        case Some(x) =>
+          application.startBiddingWithStopPrice(x, auction, auction2)
+        case None =>
+          application.startBiddingIn(auction, auction2)
+      }
       auction.hasReceivedJoinRequestFromSniper()
       auction2.hasReceivedJoinRequestFromSniper()
     }
@@ -48,7 +57,7 @@ class AuctionSniperEndToEndTest extends Specification with Logging {
       joinAuction()
 
       auction.announceClosed()
-      application.showsSniperHasLostAuction(auction, 0)
+      application.showsSniperHasLostAuction(auction, 0, 0)
     }
 
     "join, bid, and lose" in new RunnerAndAuctionServer {
@@ -60,7 +69,7 @@ class AuctionSniperEndToEndTest extends Specification with Logging {
       auction.hasReceivedBid(1098)
 
       auction.announceClosed()
-      application.showsSniperHasLostAuction(auction, 1098)
+      application.showsSniperHasLostAuction(auction, 1000, 1098)
     }
 
     "join, bid, and win" in new RunnerAndAuctionServer {
@@ -100,6 +109,23 @@ class AuctionSniperEndToEndTest extends Specification with Logging {
 
       application.showsSniperHasWonAuction(auction, 1098)
       application.showsSniperHasWonAuction(auction, 1098)
+    }
+
+    "lose auction when the price is too high" in new RunnerAndAuctionServer {
+      joinAuction(Some(1100))
+
+      auction.reportPrice(1000, 98, "other bidder")
+      auction.hasReceivedBid(1098)
+      application.hasShownSniperIsBidding(auction, 1000, 1098)
+
+      auction.reportPrice(1197, 10, "third party")
+      application.hasShownSniperIsLosing(auction, 1197, 1098)
+
+      auction.reportPrice(1207, 10, "fourth party")
+      application.hasShownSniperIsLosing(auction, 1207, 1098)
+
+      auction.announceClosed()
+      application.showsSniperHasLostAuction(auction, 1207, 1098)
     }
   }
 }

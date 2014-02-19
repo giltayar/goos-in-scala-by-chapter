@@ -5,21 +5,22 @@ import org.specs2.specification.Scope
 import org.specs2.mock.Mockito
 import com.example._
 import org.specs2.matcher.Matcher
-import com.example.SniperState.SniperState
 import com.example.SniperState
+import com.example.xmpp.PriceSource
 
 class AuctionSniperTest extends Specification with Mockito {
 
   trait Context extends Scope {
+    def stopPrice : Option[Int] = None
     val AN_ITEM_ID = "anItemId"
     val mockAuction = mock[Auction]
     val mockSniperListener = mock[SniperListener]
-    val auctionSniper = new AuctionSniper(AN_ITEM_ID, mockAuction)
+    val auctionSniper = new AuctionSniper(Item(AN_ITEM_ID, stopPrice), mockAuction)
 
     auctionSniper.addSniperListener(mockSniperListener)
   }
 
-  def isInState(state: SniperState) : Matcher[SniperSnapshot] =
+  def isInState(state: SniperState.Value) : Matcher[SniperSnapshot] =
     ((_:SniperSnapshot).sniperState == state, s"isn't in state $state")
 
   "AuctionSnipe" should {
@@ -66,7 +67,8 @@ class AuctionSniperTest extends Specification with Mockito {
       auctionSniper.currentPrice(PRICE, INCREMENT, PriceSource.FromOtherBidder)
       auctionSniper.auctionClosed()
 
-      there was atLeastOne(mockSniperListener).sniperStateChanged(isInState(SniperState.Bidding)) andThen
+      there was
+        atLeastOne(mockSniperListener).sniperStateChanged(isInState(SniperState.Bidding)) andThen
         one(mockSniperListener).sniperStateChanged(isInState(SniperState.Lost))
     }
 
@@ -77,9 +79,28 @@ class AuctionSniperTest extends Specification with Mockito {
       auctionSniper.currentPrice(PRICE, INCREMENT, PriceSource.FromSniper)
       auctionSniper.auctionClosed()
 
-      there was atLeastOne(mockSniperListener).sniperStateChanged(
-          SniperSnapshot(AN_ITEM_ID, PRICE, 0, SniperState.Winning)) andThen
+      there was
+        atLeastOne(mockSniperListener).
+          sniperStateChanged(SniperSnapshot(AN_ITEM_ID, PRICE, 0, SniperState.Winning)) andThen
         one(mockSniperListener).sniperStateChanged(isInState(SniperState.Won))
+    }
+
+    "reports losing and lost if price past the stop price" in new Context {
+      override def stopPrice = Some(1500)
+
+      auctionSniper.currentPrice(1000, 10, PriceSource.FromOtherBidder)
+      auctionSniper.currentPrice(1010, 10, PriceSource.FromSniper)
+      auctionSniper.currentPrice(1600, 10, PriceSource.FromOtherBidder)
+      auctionSniper.auctionClosed()
+
+      there was
+        atLeastOne(mockSniperListener).
+          sniperStateChanged(SniperSnapshot(AN_ITEM_ID, 1000, 1010, SniperState.Bidding)) andThen
+        atLeastOne(mockSniperListener).
+          sniperStateChanged(SniperSnapshot(AN_ITEM_ID, 1010, 1010, SniperState.Winning)) andThen
+        atLeastOne(mockSniperListener).
+          sniperStateChanged(SniperSnapshot(AN_ITEM_ID, 1600, 1010, SniperState.Losing)) andThen
+        atLeastOne(mockSniperListener).sniperStateChanged(SniperSnapshot(AN_ITEM_ID, 1600, 1010, SniperState.Lost))
     }
   }
 

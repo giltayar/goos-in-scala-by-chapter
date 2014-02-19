@@ -3,10 +3,10 @@ package com.example.tests
 import org.specs2.mutable.Specification
 import org.specs2.mock.Mockito
 import org.specs2.specification.Scope
-import com.example.{SniperState, SniperSnapshot, SnipersTableModel}
-import javax.swing.event.TableModelEvent
-import com.example.SnipersTableModel.Column
-import org.specs2.matcher.{MatchResult, Hamcrest}
+import com.example.{SniperState, SniperSnapshot}
+import com.example.ui.SnipersTableModel
+import SnipersTableModel.Column
+import org.specs2.matcher.Hamcrest
 
 class SnipersTableModelTest extends Specification with Mockito with Hamcrest {
 

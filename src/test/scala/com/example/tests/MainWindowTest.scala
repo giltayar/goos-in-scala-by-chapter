@@ -1,11 +1,12 @@
 package com.example.tests
 
 import org.specs2.mutable.{After, Specification}
-import com.example.{SniperPortfolio, UserRequestListener, SnipersTableModel, MainWindow}
+import com.example.{Item, SniperPortfolio}
 import org.specs2.specification.Scope
 import com.example.tests.endtoend.AuctionSniperDriver
 import com.objogate.wl.swing.probe.ValueMatcherProbe
 import org.hamcrest.Matchers
+import com.example.ui.{SnipersTableModel, UserRequestListener, MainWindow}
 
 class MainWindowTest extends Specification {
   trait Context extends Scope with After {
@@ -23,8 +24,8 @@ class MainWindowTest extends Specification {
       val snipersPortfolio = new SniperPortfolio()
       val mainWindow = new MainWindow(snipersPortfolio)
       mainWindow.addUserRequestListener(new UserRequestListener {
-        def joinAuction(itemId: String) = {
-          buttonProbe.setReceivedValue(itemId)
+        def joinAuction(item: Item) = {
+          buttonProbe.setReceivedValue(item.id)
         }
       })
 

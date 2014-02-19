@@ -2,10 +2,12 @@ package com.example
 
 
 case class SniperSnapshot(itemId: String, lastPrice: Int, lastBid: Int, sniperState: SniperState.Value) {
-  def closed() = SniperSnapshot(itemId, lastBid, lastBid,
+  def losing(price: Int): SniperSnapshot = SniperSnapshot(itemId, price, lastBid, SniperState.Losing)
+
+  def closed() = SniperSnapshot(itemId, lastPrice, lastBid,
     sniperState match {
       case SniperState.Winning  => SniperState.Won
-      case SniperState.Joining | SniperState.Bidding => SniperState.Lost
+      case SniperState.Joining | SniperState.Bidding | SniperState.Losing => SniperState.Lost
       case _ => throw new Exception("Auction is already closed")
     }
   )

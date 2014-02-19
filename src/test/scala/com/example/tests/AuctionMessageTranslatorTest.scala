@@ -3,8 +3,8 @@ package com.example.tests
 import org.specs2.mutable.Specification
 import org.jivesoftware.smack.packet.Message
 import org.specs2.mock.Mockito
-import com.example.{PriceSource, AuctionMessageTranslator, AuctionEventListener}
 import org.specs2.specification.Scope
+import com.example.xmpp.{AuctionEventListener, PriceSource, AuctionMessageTranslator}
 
 class AuctionMessageTranslatorTest extends Specification with Mockito {
 

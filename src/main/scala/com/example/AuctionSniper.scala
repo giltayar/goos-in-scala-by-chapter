@@ -1,9 +1,12 @@
 package com.example
 
-class AuctionSniper(private val itemId: String,
+import com.example.xmpp.{AuctionEventListener, PriceSource}
+
+class AuctionSniper(private val item: Item,
                     private val auction: Auction)
     extends AuctionEventListener {
-  var snapshot = SniperSnapshot.joining(itemId)
+  var snapshot = SniperSnapshot.joining(item.id)
+  val stopPrice = item.stopPrice
 
   private var sniperListener: SniperListener = null
 
@@ -13,8 +16,13 @@ class AuctionSniper(private val itemId: String,
 
   def currentPrice(price: Int, increment: Int, priceSource: PriceSource.Value) = priceSource match {
     case PriceSource.FromOtherBidder =>
-      auction.bid(price + increment)
-      changeSnapshotTo(snapshot.bidding(price, price + increment))
+      val bid = price + increment
+      if (item.allowsBid(bid)) {
+        changeSnapshotTo(snapshot.bidding(price, bid))
+        auction.bid(bid)
+      }
+      else
+        changeSnapshotTo(snapshot.losing(price))
     case PriceSource.FromSniper =>
       changeSnapshotTo(snapshot.winning(price))
     case _ => throw new Exception(s"Bad priceSource $priceSource")
@@ -32,10 +40,10 @@ trait SniperListener {
 }
 
 object SniperState extends Enumeration {
-  type SniperState = Value
   val Joining = Value
   val Bidding = Value
   val Winning = Value
+  val Losing = Value
   val Lost = Value
   val Won = Value
 }
